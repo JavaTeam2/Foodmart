@@ -4,10 +4,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("SpringMVC.*")
@@ -23,6 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 //Load to Environment.
 @PropertySources({ @PropertySource("classpath:ds/datasource-cfg.properties") })
+@Import({SecurityConfig.class })
 public class ApplicationContextConfig { 
   
 	@Autowired
@@ -52,12 +55,11 @@ public class ApplicationContextConfig {
     }
   
     @Bean(name = "sessionFactory")
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(getDataSource());
-        sessionFactoryBean.setPackagesToScan(env.getProperty("entitymanager.packages.to.scan"));
-        sessionFactoryBean.setHibernateProperties(hibProperties());
-        return sessionFactoryBean;
+    public SessionFactory sessionFactory() {
+    	LocalSessionFactoryBuilder  sessionFactoryBuilder = new LocalSessionFactoryBuilder(getDataSource());
+    	sessionFactoryBuilder.scanPackages(env.getProperty("entitymanager.packages.to.scan"));
+    	sessionFactoryBuilder.addProperties(hibProperties());
+        return sessionFactoryBuilder.buildSessionFactory();
     }
     
     private Properties hibProperties() {

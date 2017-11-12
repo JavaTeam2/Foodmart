@@ -59,14 +59,39 @@ INSERT INTO `food` (`id`, `name`, `price`, `price_promotion`, `kindOfFood`, `ima
 (36, 'Niger Smile', 12, 10, 'Desserts', 'http://localhost:8080/FoodHouse/images/food/desserts/Niger Smile.jpeg', '');
 -- //Desserts --
 
-CREATE TABLE IF NOT EXISTS `customer` (
-	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `users` (
     `username` varchar(45) NOT NULL,
     `password` varchar(45) NOT NULL,
     `name` nvarchar(45) COLLATE utf8_bin NOT NULL,
     `phone` varchar(15) NOT NULL, 
-    PRIMARY KEY(`id`)
+    PRIMARY KEY(`username`)
 );
+INSERT INTO `users`(`username`, `password`, `name`, `phone`) VALUES
+-- Customer --
+('customer', '123456', 'Ashe', '0989112153'),
+
+-- Manager --
+('manager', '123456', 'Blitzcrank', '0988391293'),
+
+-- Admin --
+('admin', '123456', 'Corki', '01639103218');
+
+CREATE TABLE IF NOT EXISTS `user_roles`(
+	`user_role_id` int(11) NOT NULL AUTO_INCREMENT,
+    `username` varchar(45) NOT NULL,
+    `role` varchar(45) NOT NULL,
+    PRIMARY KEY(`user_role_id`),
+    UNIQUE KEY `uni_username_role` (`username`, `role`),
+    KEY `fk_username_idx` (`username`),
+    CONSTRAINT `fk_username`
+    FOREIGN KEY (`username`)
+    REFERENCES `users`(`username`)
+);
+
+INSERT INTO `user_roles`(`username`, `role`) VALUES
+('customer', 'ROLE_CUSTOMER'),
+('manager', 'ROLE_MANAGER'),
+('admin', 'ROLE_ADMIN');
 
 CREATE TABLE IF NOT EXISTS `branch` (
 	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -110,29 +135,29 @@ INSERT INTO `branch` (`id`, `name`, `address`, `province`, `image`, `phone`, `nu
 
 
 CREATE TABLE IF NOT EXISTS `order`(
-	`customer_id` int(10) unsigned NOT NULL,
+	`customer_username` varchar(45) NOT NULL,
     `orderDate` date NOT NULL, 
     `status` nvarchar(45) COLLATE utf8_bin NOT NULL,
     `note` nvarchar(1000) COLLATE utf8_bin DEFAULT NULL,
     `totalMoney` double NOT NULL,
-    PRIMARY KEY(`customer_id`, `orderDate`),
-    CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`)
-    REFERENCES `customer`(`id`)
+    PRIMARY KEY(`customer_username`, `orderDate`),
+    CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_username`)
+    REFERENCES `users`(`username`)
 );
 
 CREATE TABLE IF NOT EXISTS `order_lines` (
-	`order_customer_id` int(10) unsigned NOT NULL, 
-    `order_orderDate` DATE NOT NULL,
+	`order_customer_username` varchar(45) NOT NULL,
+    `order_orderDate` date NOT NULL,
     `food_id` int(10) unsigned NOT NULL,
     `quantity` int(10) unsigned NOT NULL,
     `unitSalePrice` double NOT NULL,
-    PRIMARY KEY(`order_customer_id`, `order_orderDate`, `food_id`),
+    PRIMARY KEY(`order_customer_username`, `order_orderDate`, `food_id`),
     CONSTRAINT `fk_order_lines_food`
     FOREIGN KEY(`food_id`)
     REFERENCES `food`(`id`),
     CONSTRAINT `fk_order_lines_order`
-    FOREIGN KEY(`order_customer_id`,`order_orderDate`)
-    REFERENCES `order`(`customer_id`, `orderDate`)
+    FOREIGN KEY(`order_customer_username`,`order_orderDate`)
+    REFERENCES `order`(`customer_username`, `orderDate`)
 );
 
 CREATE TABLE IF NOT EXISTS `branch_has_food` (

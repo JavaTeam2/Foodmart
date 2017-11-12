@@ -23,7 +23,7 @@ public class FoodDAOImpl implements FoodDAO{
 		// TODO Auto-generated method stub
 		getCurrentSession().save(food);
 	}
-
+	
 	@Override
 	public void updateFood(Food food) {
 		// TODO Auto-generated method stub
