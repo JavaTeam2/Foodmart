@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `foods` (
     `name` nvarchar(64) COLLATE utf8_bin NOT NULL,
     `price` double unsigned NOT NULL,
     `price_promotion` double unsigned NOT NULL,
-    `kind_food` nvarchar(64),
     `image` varchar(512) NOT NULL,
     `description` nvarchar(1024) COLLATE utf8_bin NOT NULL,
      PRIMARY KEY(`id`)
@@ -40,10 +39,11 @@ CREATE TABLE IF NOT EXISTS `branches` (
     `province` nvarchar(64) COLLATE utf8_bin NOT NULL,
     `city` nvarchar(64) COLLATE utf8_bin NOT NULL,
     `phone` varchar(16) COLLATE utf8_bin NOT NULL,
-    `open_time` datetime NOT NULL,
-    `close_time` datetime NOT NULL,
+    `open_time` time NOT NULL,
+    `close_time` time NOT NULL,
     `table_quantity` int unsigned NOT NULL,
     `image` varchar(1024) NOT NULL,
+    `description` nvarchar(1024) NOT NULL,
     PRIMARY KEY(`id`)
 );
 
@@ -125,5 +125,6 @@ CREATE TABLE IF NOT EXISTS `categories_foods`(
 	`food_id` int unsigned NOT NULL,
 	PRIMARY KEY(`id`),
 	FOREIGN KEY(`cat_id`) REFERENCES `categories`(`id`),
-	FOREIGN KEY(`food_id`) REFERENCES `foods`(`id`)
+	FOREIGN KEY(`food_id`) REFERENCES `foods`(`id`),
+	UNIQUE (`cat_id`, `food_id`)
 );
