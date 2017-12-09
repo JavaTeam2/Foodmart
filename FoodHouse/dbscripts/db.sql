@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `branches` (
     `open_time` datetime NOT NULL,
     `close_time` datetime NOT NULL,
     `table_quantity` int unsigned NOT NULL,
+    `image` varchar(1024) NOT NULL,
     PRIMARY KEY(`id`)
 );
 
