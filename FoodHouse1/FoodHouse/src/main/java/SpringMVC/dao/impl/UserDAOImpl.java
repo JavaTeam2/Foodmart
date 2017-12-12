@@ -1,8 +1,6 @@
 package SpringMVC.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import SpringMVC.dao.UserDAO;
 import SpringMVC.entity.User;
-import SpringMVC.entity.UserRole;
 
 @Repository
 public class UserDAOImpl implements UserDAO {

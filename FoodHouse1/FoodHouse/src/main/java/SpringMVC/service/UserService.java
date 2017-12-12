@@ -1,10 +1,8 @@
 package SpringMVC.service;
 
 import java.util.List;
-import java.util.Set;
 
 import SpringMVC.entity.User;
-import SpringMVC.entity.UserRole;
 
 public interface UserService {
 	public void addUser(User user);

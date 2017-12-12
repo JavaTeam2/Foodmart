@@ -1,5 +1,6 @@
 package SpringMVC.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String email;
@@ -127,7 +132,8 @@ public class User {
 		this.phone = phone;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "username")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="username")
+//	@JoinColumn(name = "id", referencedColumnName="username")
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}

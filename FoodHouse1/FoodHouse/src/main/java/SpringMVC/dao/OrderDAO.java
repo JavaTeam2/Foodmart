@@ -2,7 +2,6 @@ package SpringMVC.dao;
 
 import java.util.List;
 import SpringMVC.entity.Order;
-import SpringMVC.entity.OrderDetail;;
 
 public interface OrderDAO {
 	public void addOrder(Order order);

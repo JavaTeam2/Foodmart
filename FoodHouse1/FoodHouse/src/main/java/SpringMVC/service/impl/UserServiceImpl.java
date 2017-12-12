@@ -1,7 +1,6 @@
 package SpringMVC.service.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import SpringMVC.dao.UserDAO;
 import SpringMVC.entity.User;
-import SpringMVC.entity.UserRole;
 import SpringMVC.service.UserService;
 @Service
 @Transactional

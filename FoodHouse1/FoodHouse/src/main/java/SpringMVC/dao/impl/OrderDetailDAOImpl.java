@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import SpringMVC.dao.OrderDetailDAO;
-import SpringMVC.entity.Order;
 import SpringMVC.entity.OrderDetail;
 
 @Repository
