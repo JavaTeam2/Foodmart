@@ -28,17 +28,18 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		SpringMVC.entity.User user = userDAO.getUser(username);
-		System.out.println("UserInfo= " + user);
-		
+		SpringMVC.entity.User user = userDAO.getUserByUsername(username);
+		System.out.println("UserInfo= " + user.getName());
+		System.out.println("UserRole= " + user.getUserRole());
 		if(user == null) {
 			throw new UsernameNotFoundException("User " + username + " was not found in the database");
 		}
 		
 		// [customer, manager, admin
-		
+		System.out.println("role" + user.getUserRole());
 		List<GrantedAuthority> authorities =
                 buildUserAuthority(user.getUserRole());
+		
 
 		return (UserDetails) buildUserForAuthentication(user, authorities);
 	}

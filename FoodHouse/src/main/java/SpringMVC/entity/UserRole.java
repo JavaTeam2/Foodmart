@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,22 +14,26 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="user_roles", uniqueConstraints = 
 			@UniqueConstraint(columnNames = {"username", "role"}))
-public class UserRole {
+public class UserRole implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int userRoleID;
-	private User username;
+	private User user;
 	private String role;
 	
 	public UserRole() {
 		
 	}
 	
-	public UserRole(User username, String role) {
-		super();
-		this.username = username;
+	public UserRole(User user, String role) {
+		super();                                                     
+		this.user = user;
 		this.role = role;
 	}
 	@Id
-	@Column(name = "user_role_id", nullable = false)
+	@Column(name = "id", nullable = false)
 	public int getUserRoleID() {
 		return userRoleID;
 	}
@@ -36,12 +42,12 @@ public class UserRole {
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username")
+	@JoinColumn(name = "username", referencedColumnName = "username")
 	public User getUsername() {
-		return username;
+		return user;
 	}
 	public void setUsername(User username) {
-		this.username = username;
+		this.user = username;
 	}
 	
 	@Column(name = "role", length = 45, nullable = false)

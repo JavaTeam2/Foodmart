@@ -6,44 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import SpringMVC.dao.UserDAO;
-import SpringMVC.entity.User;
-import SpringMVC.service.UserService;
+import SpringMVC.dao.OrderDAO;
+import SpringMVC.entity.Order;
+import SpringMVC.service.OrderService;
+
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class OrderServiceImpl implements OrderService{
 	@Autowired
-	private UserDAO userDAO;
-	
+	private OrderDAO orderDAO;
 	@Override
-	public void addUser(User user) {
+	public void addOrder(Order order) {
 		// TODO Auto-generated method stub
-		userDAO.addUser(user);
+		orderDAO.addOrder(order);
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateOrder(Order order) {
 		// TODO Auto-generated method stub
-		userDAO.updateUser(user);
+		orderDAO.updateOrder(order);
 	}
 
 	@Override
-	public User getUser(int id) {
+	public Order getOrder(int id) {
 		// TODO Auto-generated method stub
-		return userDAO.getUser(id);
+		return orderDAO.getOrder(id);
 	}
 
 	@Override
-	public void deleteUser(int id) {
+	public void deleteOrder(int id) {
 		// TODO Auto-generated method stub
-		userDAO.deleteUser(id);
+		orderDAO.deleteOrder(id);
 	}
 
 	@Override
-	public List<User> getListUser() {
+	public List<Order> getOrders() {
 		// TODO Auto-generated method stub
-		return userDAO.getListUser();
+		return orderDAO.getOrders();
 	}
-
 
 }

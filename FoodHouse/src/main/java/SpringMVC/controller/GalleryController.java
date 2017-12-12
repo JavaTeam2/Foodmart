@@ -17,17 +17,18 @@ public class GalleryController {
 	
 	 @RequestMapping("/gallery")
 	    public String gallery(Model model) {
+		 System.out.println("dfsdfsdf");
 		 	List<Food> listFood = foodService.getFoods();
 		 	List<Food> listStarters = new ArrayList<Food>();
 		 	List<Food> listMainCourse = new ArrayList<Food>();
 		 	List<Food> listSalads = new ArrayList<Food>();
 		 	List<Food> listDesserts = new ArrayList<Food>();
 		 	
-		 	listStarters = foodService.getStartersFood(listFood);
+		 	/*listStarters = foodService.getStartersFood(listFood);
 		 	listMainCourse = foodService.getMainCourseFood(listFood);
 		 	listSalads = foodService.getSaladsFood(listFood);
 		 	listDesserts = foodService.getDessertsFood(listFood);
-		 	
+		 	*/
 		 	
 		 	model.addAttribute("listFood", listFood);
 		 	
@@ -35,6 +36,11 @@ public class GalleryController {
 		 	model.addAttribute("listMainCourse", listMainCourse);
 		 	model.addAttribute("listSalads", listSalads);
 		 	model.addAttribute("listDesserts", listDesserts);
+		 	
+		 	for(int i = 0; i < listFood.size(); i++) {
+		 		System.out.println(listFood.get(i).getName());
+		 	}
+		 	
 	        return "gallery";  
 	    }
 }

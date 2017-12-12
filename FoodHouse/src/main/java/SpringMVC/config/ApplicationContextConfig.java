@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 //Load to Environment.
 @PropertySources({ @PropertySource("classpath:ds/datasource-cfg.properties") })
-@Import({SecurityConfig.class })
+//@Import({SecurityConfig.class })
 public class ApplicationContextConfig { 
   
 	@Autowired
