@@ -1,6 +1,5 @@
 package SpringMVC.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,23 +27,28 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		User userToUpdate = getUser(user.getUsername());
-		userToUpdate.setPassword(user.getPassword());
+		User userToUpdate = getUser(user.getId());
 		userToUpdate.setName(user.getName());
+		userToUpdate.setEmail(user.getEmail());
+		userToUpdate.setUsername(user.getUsername());
+		userToUpdate.setPassword(user.getPassword());
+		userToUpdate.setCity(user.getCity());
+		userToUpdate.setProvince(user.getProvince());
+		userToUpdate.setAddress(user.getAddress());
 		userToUpdate.setPhone(user.getPhone());
 	}
 
 	@Override
-	public User getUser(String username) {
+	public User getUser(int id) {
 		// TODO Auto-generated method stub
-		User user = getCurrentSession().get(User.class, username);
+		User user = getCurrentSession().get(User.class, id);
 		return user;
 	}
 
 	@Override
-	public void deleteUser(String username) {
+	public void deleteUser(int id) {
 		// TODO Auto-generated method stub
-		User user = getUser(username);
+		User user = getUser(id);
 		if(user != null) {
 			getCurrentSession().delete(user);
 		}
@@ -57,5 +61,18 @@ public class UserDAOImpl implements UserDAO {
 		
 		return getCurrentSession().createQuery("Select e from " + User.class.getName() + " e").list();
 	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		List<User> list = getListUser();
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getUsername().equals(username)) {
+				return list.get(i);
+			}
+		}
+		return null;
+	}
+
 
 }

@@ -2,6 +2,6 @@ SpringMVC\controller\HelloWorldController.class
 SpringMVC\config\WebMvcConfig.class
 SpringMVC\controller\GalleryController.class
 SpringMVC\entity\Branch.class
+SpringMVC\config\SpringWebAppInitializer.class
 SpringMVC\config\ApplicationContextConfig.class
 SpringMVC\entity\Food.class
-SpringMVC\config\SpringWebAppInitializer.class

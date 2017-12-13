@@ -31,7 +31,6 @@ public class FoodDAOImpl implements FoodDAO{
 		foodToUpdate.setName(food.getName());
 		foodToUpdate.setPrice(food.getPrice());
 		foodToUpdate.setPrice_promotion(food.getPrice_promotion());
-		foodToUpdate.setKindOfFood(food.getKindOfFood());
 		foodToUpdate.setImage(food.getImage());
 		foodToUpdate.setDescription(food.getDescription());
 		getCurrentSession().update(foodToUpdate);

@@ -10,9 +10,9 @@ public interface FoodService {
 	public Food getFood(int id);
 	public void deleteFood(int id);
 	public List<Food> getFoods();
-	public List<Food> getStartersFood(List<Food> listFood);
+	/*public List<Food> getStartersFood(List<Food> listFood);
 	public List<Food> getMainCourseFood(List<Food> listFood);
 	public List<Food> getSaladsFood(List<Food> listFood);
 	public List<Food> getDessertsFood(List<Food> listFood);
-	public List<Food> getSpecialFood(List<Food> listFood);
+	public List<Food> getSpecialFood(List<Food> listFood);*/
 }

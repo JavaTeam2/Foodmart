@@ -1,6 +1,5 @@
 package SpringMVC.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +24,7 @@ public class FoodServiceImpl implements FoodService{
 	private static final String DESSERTS_FOOD = "Desserts";
 	private static final String SPECIAL_FOOD = "Special";
 	
-	@Override
+	/*@Override
 	public List<Food> getStartersFood(List<Food> listFood) {
 		List<Food> listStartersFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
@@ -80,7 +79,7 @@ public class FoodServiceImpl implements FoodService{
 			}
 		}
 		return listSpecialFood;
-	}
+	}*/
 	
 	@Override
 	public void addFood(Food food) {
