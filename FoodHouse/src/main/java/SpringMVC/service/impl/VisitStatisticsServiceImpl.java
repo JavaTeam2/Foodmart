@@ -14,31 +14,31 @@ import SpringMVC.service.VisitStatisticsService;
 public class VisitStatisticsServiceImpl implements VisitStatisticsService{
 	@Autowired
 	private VisitStatisticsDAO visitStatisticsDAO;
-	@Override
+	
 	public void addVisitStatistics(VisitStatistics visitStatistics) {
 		// TODO Auto-generated method stub
 		visitStatisticsDAO.addVisitStatistics(visitStatistics);
 	}
 
-	@Override
+	
 	public void updateVisitStatistics(VisitStatistics visitStatistics) {
 		// TODO Auto-generated method stub
 		visitStatisticsDAO.updateVisitStatistics(visitStatistics);
 	}
 
-	@Override
+	
 	public VisitStatistics getVisitStatistics(int id) {
 		// TODO Auto-generated method stub
 		return visitStatisticsDAO.getVisitStatistics(id);
 	}
 
-	@Override
+	
 	public void deleteVisitStatistics(int id) {
 		// TODO Auto-generated method stub
 		visitStatisticsDAO.deleteVisitStatistics(id);
 	}
 
-	@Override
+	
 	public List<VisitStatistics> getListVisitStatistics() {
 		// TODO Auto-generated method stub
 		return visitStatisticsDAO.getListVisitStatistics();

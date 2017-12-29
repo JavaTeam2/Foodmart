@@ -14,31 +14,30 @@ import SpringMVC.service.CategoriesService;
 public class CategoriesServiceImpl implements  CategoriesService{
 	@Autowired
 	private CategoriesDAO categoriesDAO;
-	@Override
+
 	public void addCategories(Categories categories) {
 		// TODO Auto-generated method stub
 		categoriesDAO.addCategories(categories);
 	}
 
-	@Override
+
 	public void updateCategories(Categories categories) {
 		// TODO Auto-generated method stub
 		categoriesDAO.updateCategories(categories);
 	}
 
-	@Override
+	
 	public Categories getCategories(int id) {
 		// TODO Auto-generated method stub
 		return categoriesDAO.getCategories(id);
 	}
 
-	@Override
 	public void deleteCategories(int id) {
 		// TODO Auto-generated method stub
 		categoriesDAO.deleteCategories(id);
 	}
 
-	@Override
+	
 	public List<Categories> getListCategories() {
 		// TODO Auto-generated method stub
 		return categoriesDAO.getListCategories();

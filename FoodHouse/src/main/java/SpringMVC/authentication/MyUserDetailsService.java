@@ -25,7 +25,6 @@ public class MyUserDetailsService implements UserDetailsService {
 	private UserDAO userDAO;
 	
 	@Transactional(readOnly=true)
-	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		SpringMVC.entity.User user = userDAO.getUserByUsername(username);

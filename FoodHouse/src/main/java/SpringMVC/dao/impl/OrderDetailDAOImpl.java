@@ -18,13 +18,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
+
 	public void addOrderDetail(OrderDetail orderDetail) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(orderDetail);
 	}
 
-	@Override
+
 	public void updateOrderDetail(OrderDetail orderDetail) {
 		// TODO Auto-generated method stub
 		OrderDetail orderDetailToUpdate = getOrderDetail(orderDetail.getId());
@@ -35,14 +35,14 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 		getCurrentSession().update(orderDetailToUpdate);
 	}
 
-	@Override
+
 	public OrderDetail getOrderDetail(int id) {
 		// TODO Auto-generated method stub
-		OrderDetail orderDetail = getCurrentSession().get(OrderDetail.class, id);
+		OrderDetail orderDetail = (OrderDetail) getCurrentSession().get(OrderDetail.class, id);
 		return orderDetail;
 	}
 
-	@Override
+
 	public void deleteOrderDetail(int id) {
 		// TODO Auto-generated method stub
 		OrderDetail orderDetail = getOrderDetail(id);
@@ -52,7 +52,6 @@ public class OrderDetailDAOImpl implements OrderDetailDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<OrderDetail> getOrderDetails() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + OrderDetail.class.getName() + " e").list();

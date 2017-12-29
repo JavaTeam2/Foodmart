@@ -18,13 +18,12 @@ public class BranchDAOImpl implements BranchDAO {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
 	public void addBranch(Branch branch) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(branch);
 	}
 
-	@Override
+
 	public void updateBranch(Branch branch) {
 		// TODO Auto-generated method stub
 		Branch branchToUpdate = getBranch(branch.getId());
@@ -37,14 +36,14 @@ public class BranchDAOImpl implements BranchDAO {
 		getCurrentSession().update(branchToUpdate);
 	}
 
-	@Override
+
 	public Branch getBranch(int id) {
 		// TODO Auto-generated method stub
-		Branch branch = getCurrentSession().get(Branch.class, id);
+		Branch branch = (Branch) getCurrentSession().get(Branch.class, id);
 		return branch;
 	}
 
-	@Override
+
 	public void deleteBranch(int id) {
 		// TODO Auto-generated method stub
 		Branch branch = getBranch(id);
@@ -54,7 +53,6 @@ public class BranchDAOImpl implements BranchDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Branch> getBranches() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + Branch.class.getName() + " e").list();

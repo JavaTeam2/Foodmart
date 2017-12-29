@@ -63,11 +63,39 @@
 	-moz-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
+
+.agile-gallery-info input[type=image]{
+	height: 32px;
+	weight: 32px;
+	float: right;
+	line-height: 32px;
+    background: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
 .w3_tab_img_left:hover .agile-gallery-info{
 	background: #e64e1f;
 	color:#FFFFFF;
 }
-.w3_tab_img_left:hover .agile-gallery-info p{
-	color:#FFFFFF;
+
+.w3_tab_img_left .agile-gallery-info .product-carousel-price ins {
+  color: #e64e1f;
+  font-weight: 700;
+  margin-right: 5px;
+  text-decoration: none;
 }
+
+.w3_tab_img_left:hover .agile-gallery-info .product-carousel-price ins {
+	color:#FFFFFF;
+	font-weight: 700;
+  	margin-right: 5px;
+    text-decoration: none;
+}
+
 /*-- //gallery --*/
+
+

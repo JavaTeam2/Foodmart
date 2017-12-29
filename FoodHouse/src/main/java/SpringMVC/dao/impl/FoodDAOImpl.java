@@ -18,13 +18,13 @@ public class FoodDAOImpl implements FoodDAO{
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
+	
 	public void addFood(Food food) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(food);
 	}
 	
-	@Override
+
 	public void updateFood(Food food) {
 		// TODO Auto-generated method stub
 		Food foodToUpdate = getFood(food.getId());
@@ -36,14 +36,14 @@ public class FoodDAOImpl implements FoodDAO{
 		getCurrentSession().update(foodToUpdate);
 	}
 
-	@Override
+
 	public Food getFood(int id) {
 		// TODO Auto-generated method stub
-		Food food = getCurrentSession().get(Food.class, id);
+		Food food = (Food) getCurrentSession().get(Food.class, id);
 		return food;
 	}
 
-	@Override
+
 	public void deleteFood(int id) {
 		// TODO Auto-generated method stub
 		Food food = getFood(id);
@@ -53,7 +53,6 @@ public class FoodDAOImpl implements FoodDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Food> getFoods() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + Food.class.getName() + " e").list();

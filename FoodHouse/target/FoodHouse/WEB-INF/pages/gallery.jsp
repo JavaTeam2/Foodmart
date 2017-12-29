@@ -1,9 +1,8 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="SpringMVC.entity.Food"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +15,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- bootstrap-css -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!--// bootstrap-css -->
+
+
 <!-- css -->
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
     <!-- Custom CSS -->
 <link rel="stylesheet" href="css/gallery.css">
-
-
 <!--// css -->
+<!-- menu -->
+<link type="text/css" rel="stylesheet" href="css/cm-overlay.css" />
+<!-- //menu -->
+
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
@@ -54,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3layouts-header-top">
 				<div class="w3-header-top-grids">
 					<div class="w3-header-top-left">
-						<p><i class="fa fa-volume-control-phone" aria-hidden="true"></i> +1 234 567 8901</p>
+						<p><i class="fa fa-home" aria-hidden="true"></i> 1st Street , mexico city</p>
 					</div>
 					<div class="w3-header-top-right">
 						<div class="agileinfo-social-grids">
@@ -66,7 +69,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</div>
 						<div class="w3-header-top-right-text">
-							<p><i class="fa fa-home" aria-hidden="true"></i> 1st Street , mexico city</p>
+							<div class="agileinfo-social-grids">
+								<ul>
+									<li><a href="login">Login</a></li>
+									<li><a href="signup">Signup</a></li>
+								</ul>
+							</div>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -85,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 							  </button>
 								 <div class="navbar-brand logo ">
-									<h1><a href="index.html">Food <span>Club</span></a></h1>
+									<h1><a href="home">Food <span>Club</span></a></h1>
 								</div>
 
 							</div>
@@ -93,17 +101,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							 <ul class="nav navbar-nav link-effect-4">
-							<li><a href="index.html" data-hover="Home">Home</a> </li>
-								<li><a href="about.html" data-hover="About">About </a> </li>
-								<li class="active"><a href="gallery.html"  data-hover="Gallery">Gallery</a></li>
-								<li class="dropdown">
-									<a href="codes.html" class="dropdown-toggle" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="icons.html">Icons</a></li>
-										<li><a href="codes.html">Short Codes</a></li>
-									</ul>
-							  </li>
-								<li><a href="contact.html" data-hover="Contact">Contact</a></li>
+							<li><a href="home" data-hover="Home">Home</a> </li>
+								<li><a href="about" data-hover="About">About </a> </li>
+								<li class="active"><a href="gallery"  data-hover="Gallery">Gallery</a></li>
+							  	<li><a href="our_branches" data-hover="OurBranches">Our Branches</a></li>
+								<li><a href="contact" data-hover="Contact">Contact</a></li>
 							  </ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
@@ -125,275 +127,133 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- //banner -->
 	<!-- menu -->
-	<div class="w3l-about jarallax" id="gallery">
-		<div class="container">
-			<div class="w3-agile-title">
-				<p><i class="fa fa-cutlery" aria-hidden="true"></i></p>
-				<div class="w3-agile-title-pos">
-					<h3 class="agileits-title">Menu</h3>
-				</div>
-			</div>
-			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home-main" id="home-tab" role="tab" data-toggle="tab" aria-controls="home-main" aria-expanded="true">All</a></li>
-						<li role="presentation"><a href="#learning" role="tab" id="learning-tab" data-toggle="tab" aria-controls="learning">starters</a></li>
-						<li role="presentation"><a href="#playing" role="tab" id="playing-tab" data-toggle="tab" aria-controls="playing">main course</a></li>
-						<li role="presentation"><a href="#painting" role="tab" id="painting-tab" data-toggle="tab" aria-controls="painting">salads</a></li>
-						<li role="presentation"><a href="#school" role="tab" id="school-tab" data-toggle="tab" aria-controls="school">desserts</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="home-main" aria-labelledby="home-tab">
-							<div class="w3_tab_img">
+	<div class="container" style="padding:2em 0;">
+		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+				<ul id="myTab" class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#home-main" id="home-tab" role="tab" data-toggle="tab" aria-controls="home-main" aria-expanded="true">All</a></li>
+					<li role="presentation"><a href="#learning" role="tab" id="learning-tab" data-toggle="tab" aria-controls="learning">starters</a></li>
+					<li role="presentation"><a href="#playing" role="tab" id="playing-tab" data-toggle="tab" aria-controls="playing">main course</a></li>
+					<li role="presentation"><a href="#painting" role="tab" id="painting-tab" data-toggle="tab" aria-controls="painting">salads</a></li>
+					<li role="presentation"><a href="#school" role="tab" id="school-tab" data-toggle="tab" aria-controls="school">desserts</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="home-main" aria-labelledby="home-tab">
+						<div class="w3_tab_img">
+							<c:forEach items="${listFood }" var="food">
 								<div class="col-sm-3 w3_tab_img_left">
 									<div class="demo">
-										<a class="cm-overlay" href="images/s1.jpg">
-										  <figure class="imghvr-shutter-in-out-diag-2"><img src="images/s1.jpg" alt=" " class="img-responsive" />
+										<a class="cm-overlay" href="${food.image }">
+										  <figure class="imghvr-shutter-in-out-diag-2"><img src="${food.image }" alt=" " class="img-responsive" />
 										  </figure>
 										</a>
 									</div>
 									<div class="agile-gallery-info">
-										<h5>Lorem</h5>
-										<p>Consectetur</p>
+										<h5>${food.name }</h5>
+										<div class="product-carousel-price">
+	                                    	<ins>$${food.price }</ins> <del>$${food.price_promotion }</del>
+	                                	</div> 
 									</div>
 								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s2.jpg">
-										  <figure class="imghvr-shutter-in-out-diag-2"><img src="images/s2.jpg" alt=" " class="img-responsive" />
-										  </figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Ipsum</h5>
-										<p>Adipiscing </p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s3.jpg">
-										  <figure class="imghvr-shutter-in-out-diag-2"><img src="images/s3.jpg" alt=" " class="img-responsive" />
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Vivamus</h5>
-										<p>Ullamcorper  </p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s4.jpg">
-										  <figure class="imghvr-shutter-in-out-diag-2"><img src="images/s4.jpg" alt=" " class="img-responsive" />
-										</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Fusce</h5>
-										<p>Tristique</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s5.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/s5.jpg" alt=" " class="img-responsive" />
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Nullam</h5>
-										<p>accumsan</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s6.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/s6.jpg" alt=" " class="img-responsive" />
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Donec</h5>
-										<p>Vulputate</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/1.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/1.jpg" alt=" " class="img-responsive" />
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Vivamus</h5>
-										<p>Sodales</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/2.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/2.jpg" alt=" " class="img-responsive" />
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Morbi</h5>
-										<p>Ornare </p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="learning" aria-labelledby="learning-tab">
-							<div class="w3_tab_img">
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/3.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/3.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Vivamus</h5>
-										<p>Eleifend</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/4.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/4.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Cras</h5>
-										<p>Pulvinar</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="playing" aria-labelledby="playing-tab">
-							<div class="w3_tab_img">
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/5.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/5.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Maecenas</h5>
-										<p>Blandit</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/6.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/6.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Sodales</h5>
-										<p>Vivamus</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/7.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/7.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Vivamus</h5>
-										<p>Eleifend</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/8.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/8.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Maecenas</h5>
-										<p>Blandit</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="painting" aria-labelledby="painting-tab">
-							<div class="w3_tab_img">
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/11.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/11.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Morbi</h5>
-										<p>Ornare </p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/12.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/12.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Cras</h5>
-										<p>Pulvinar</p>
-									</div>
-								</div>
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s1.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/s1.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Donec</h5>
-										<p>Vulputate</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="school" aria-labelledby="school-tab">
-							<div class="w3_tab_img">
-								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="images/s2.jpg">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="images/s2.jpg" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>Lorem</h5>
-										<p>Consectetur</p>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
+							</c:forEach>
+							<div class="clearfix"> </div>
 						</div>
 					</div>
-			</div>
-			<script src="js/jquery.tools.min.js"></script>
-			<script src="js/jquery.mobile.custom.min.js"></script>
-			<script src="js/jquery.cm-overlay.js"></script>
-			<script>
-				$(document).ready(function(){
-					$('.cm-overlay').cmOverlay();
-				});
-			</script>
+					<div role="tabpanel" class="tab-pane fade" id="learning" aria-labelledby="learning-tab">
+						<div class="w3_tab_img">
+							<c:forEach items="${listStarters }" var="startersFood">
+								<div class="col-sm-3 w3_tab_img_left">
+									<div class="demo">
+										<a class="cm-overlay" href="${startersFood.image }">
+											<figure class="imghvr-shutter-in-out-diag-2"><img src="${startersFood.image }" alt=" " class="img-responsive">
+											</figure>
+										</a>
+									</div>
+									<div class="agile-gallery-info">
+										<h5>${startersFood.name }</h5>
+										<div class="product-carousel-price">
+	                                    	<ins>$${startersFood.price }</ins> <del>$${startersFood.price_promotion }</del>
+	                                	</div> 
+									</div>
+								</div>
+							</c:forEach>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="playing" aria-labelledby="playing-tab">
+						<div class="w3_tab_img">
+							<c:forEach items="${listMainCourse }" var="mainCourseFood">
+								<div class="col-sm-3 w3_tab_img_left">
+									<div class="demo">
+										<a class="cm-overlay" href="${mainCourseFood.image }">
+											<figure class="imghvr-shutter-in-out-diag-2"><img src="${mainCourseFood.image }" alt=" " class="img-responsive">
+											</figure>
+										</a>
+									</div>
+									<div class="agile-gallery-info">
+										<h5>${mainCourseFood.name }</h5>
+										<div class="product-carousel-price">
+	                                    	<ins>$${mainCourseFood.price }</ins> <del>$${mainCourseFood.price_promotion }</del>
+	                                	</div> 
+									</div>
+								</div>
+							</c:forEach>
+							
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="painting" aria-labelledby="painting-tab">
+						<div class="w3_tab_img">
+							<c:forEach items="${listSalads }" var="saladsFood">
+								<div class="col-sm-3 w3_tab_img_left">
+									<div class="demo">
+										<a class="cm-overlay" href="${saladsFood.image }">
+											<figure class="imghvr-shutter-in-out-diag-2"><img src="${saladsFood.image }" alt=" " class="img-responsive">
+											</figure>
+										</a>
+									</div>
+									<div class="agile-gallery-info">
+										<h5>${saladsFood.name }</h5>
+										<div class="product-carousel-price">
+	                                    	<ins>$${saladsFood.price }</ins> <del>$${saladsFood.price_promotion }</del>
+	                                	</div> 
+									</div>
+								</div>
+							</c:forEach>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="school" aria-labelledby="school-tab">
+						<div class="w3_tab_img">
+							<c:forEach items="${listDesserts }" var="dessertsFood">
+								<div class="col-sm-3 w3_tab_img_left">
+									<div class="demo">
+										<a class="cm-overlay" href="${dessertsFood.image }">
+											<figure class="imghvr-shutter-in-out-diag-2"><img src="${dessertsFood.image }" alt=" " class="img-responsive">
+											</figure>
+										</a>
+									</div>
+									<div class="agile-gallery-info">
+										<h5>${dessertsFood.name }</h5>
+										<div class="product-carousel-price">
+	                                    	<ins>$${dessertsFood.price }</ins> <del>$${dessertsFood.price_promotion }</del>
+	                                	</div> 
+									</div>
+								</div>
+							</c:forEach>
+							
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
 		</div>
+		<script src="js/jquery.tools.min.js"></script>
+		<script src="js/jquery.mobile.custom.min.js"></script>
+		<script src="js/jquery.cm-overlay.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('.cm-overlay').cmOverlay();
+			});
+		</script>
 	</div>
 	<!-- //menu -->
 	<!-- footer -->
@@ -402,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-grids">
 				<div class="col-md-3 footer-grid">
 					<div class="footer-grid-heading">
-						<h3><a href="index.html">Food <span>Club</span></a></h3>
+						<h3><a href="home">Food <span>Club</span></a></h3>
 					</div>
 					<div class="agile-footer-info">
 						<p>Maecenas pharetra scelerisque sem quis commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
@@ -436,12 +296,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="footer-grid-info">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="icons.html">Icons</a></li>
-							<li><a href="codes.html">Short Codes</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="home">Home</a></li>
+							<li><a href="about">About</a></li>
+							<li><a href="gallery">Gallery</a></li>
+							<li><a href="icons">Icons</a></li>
+							<li><a href="codes">Short Codes</a></li>
+							<li><a href="contact">Contact</a></li>
 						</ul>
 					</div>
 				</div>

@@ -16,13 +16,13 @@ public class CostsIncurredDAOImpl implements CostsIncurredDAO {
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	@Override
+	
 	public void addCostsIncurred(CostsIncurred costsIncurred) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(costsIncurred);
 	}
 
-	@Override
+	
 	public void updateCostsIncurred(CostsIncurred costsIncurred) {
 		// TODO Auto-generated method stub
 		CostsIncurred costsToUpdate = getCostsIncurred(costsIncurred.getId());
@@ -33,14 +33,14 @@ public class CostsIncurredDAOImpl implements CostsIncurredDAO {
 		getCurrentSession().update(costsToUpdate);
 	}
 
-	@Override
+	
 	public CostsIncurred getCostsIncurred(int id) {
 		// TODO Auto-generated method stub
-		CostsIncurred costs = getCurrentSession().get(CostsIncurred.class, id);
+		CostsIncurred costs = (CostsIncurred) getCurrentSession().get(CostsIncurred.class, id);
 		return costs;
 	}
 
-	@Override
+	
 	public void deleteCostsIncurred(int id) {
 		// TODO Auto-generated method stub
 		CostsIncurred costs = getCostsIncurred(id);
@@ -48,8 +48,8 @@ public class CostsIncurredDAOImpl implements CostsIncurredDAO {
 			getCurrentSession().delete(costs);
 		}
 	}
+	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<CostsIncurred> getListCostsIncurred() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + CostsIncurred.class.getName() + " e").list();

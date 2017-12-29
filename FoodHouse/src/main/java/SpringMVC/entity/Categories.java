@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "id")
+@Table(name = "categories")
 public class Categories {
 	private int id;
 	private String name;

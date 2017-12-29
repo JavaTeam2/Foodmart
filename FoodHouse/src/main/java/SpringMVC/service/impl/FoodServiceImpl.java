@@ -81,31 +81,31 @@ public class FoodServiceImpl implements FoodService{
 		return listSpecialFood;
 	}*/
 	
-	@Override
+	
 	public void addFood(Food food) {
 		// TODO Auto-generated method stub
 		foodDAO.addFood(food);
 	}
 
-	@Override
+	
 	public void updateFood(Food food) {
 		// TODO Auto-generated method stub
 		foodDAO.updateFood(food);
 	}
 
-	@Override
+	
 	public Food getFood(int id) {
 		// TODO Auto-generated method stub
 		return foodDAO.getFood(id);
 	}
 
-	@Override
+	
 	public void deleteFood(int id) {
 		// TODO Auto-generated method stub
 		foodDAO.deleteFood(id);
 	}
 
-	@Override
+	
 	public List<Food> getFoods() {
 		// TODO Auto-generated method stub
 		return foodDAO.getFoods();

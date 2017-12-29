@@ -14,31 +14,31 @@ import SpringMVC.service.CostsIncurredService;
 public class CostsIncurredServiceImpl implements CostsIncurredService {
 	@Autowired
 	private CostsIncurredDAO costsIncurredDAO;
-	@Override
+	
 	public void addCostsIncurred(CostsIncurred costsIncurred) {
 		// TODO Auto-generated method stub
 		costsIncurredDAO.addCostsIncurred(costsIncurred);
 	}
 
-	@Override
+	
 	public void updateCostsIncurred(CostsIncurred costsIncurred) {
 		// TODO Auto-generated method stub
 		costsIncurredDAO.updateCostsIncurred(costsIncurred);
 	}
 
-	@Override
+	
 	public CostsIncurred getCostsIncurred(int id) {
 		// TODO Auto-generated method stub
 		return costsIncurredDAO.getCostsIncurred(id);
 	}
 
-	@Override
+	
 	public void deleteCostsIncurred(int id) {
 		// TODO Auto-generated method stub
 		costsIncurredDAO.deleteCostsIncurred(id);
 	}
 
-	@Override
+	
 	public List<CostsIncurred> getListCostsIncurred() {
 		// TODO Auto-generated method stub
 		return costsIncurredDAO.getListCostsIncurred();

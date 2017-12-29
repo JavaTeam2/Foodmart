@@ -15,31 +15,31 @@ import SpringMVC.service.OrderService;
 public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private OrderDAO orderDAO;
-	@Override
+	
 	public void addOrder(Order order) {
 		// TODO Auto-generated method stub
 		orderDAO.addOrder(order);
 	}
 
-	@Override
+	
 	public void updateOrder(Order order) {
 		// TODO Auto-generated method stub
 		orderDAO.updateOrder(order);
 	}
 
-	@Override
+	
 	public Order getOrder(int id) {
 		// TODO Auto-generated method stub
 		return orderDAO.getOrder(id);
 	}
 
-	@Override
+	
 	public void deleteOrder(int id) {
 		// TODO Auto-generated method stub
 		orderDAO.deleteOrder(id);
 	}
 
-	@Override
+	
 	public List<Order> getOrders() {
 		// TODO Auto-generated method stub
 		return orderDAO.getOrders();

@@ -14,31 +14,31 @@ import SpringMVC.service.UserRoleService;
 public class UserRoleServiceImpl implements UserRoleService {
 	@Autowired
 	private UserRoleDAO userRoleDAO;
-	@Override
+	
 	public void addUserRole(UserRole userRole) {
 		// TODO Auto-generated method stub
 		userRoleDAO.addUserRole(userRole);
 	}
 
-	@Override
+	
 	public void updateUserRole(UserRole userRole) {
 		// TODO Auto-generated method stub
 		userRoleDAO.updateUserRole(userRole);
 	}
 
-	@Override
+	
 	public UserRole getUserRole(int id) {
 		// TODO Auto-generated method stub
 		return userRoleDAO.getUserRole(id);
 	}
 
-	@Override
+	
 	public void deleteUserRole(int id) {
 		// TODO Auto-generated method stub
 		userRoleDAO.deleteUserRole(id);
 	}
 
-	@Override
+	
 	public List<UserRole> getUserRoles() {
 		// TODO Auto-generated method stub
 		return userRoleDAO.getUserRoles();

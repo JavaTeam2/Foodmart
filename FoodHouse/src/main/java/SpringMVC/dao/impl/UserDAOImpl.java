@@ -18,13 +18,11 @@ public class UserDAOImpl implements UserDAO {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(user);
 	}
 
-	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		User userToUpdate = getUser(user.getId());
@@ -38,14 +36,14 @@ public class UserDAOImpl implements UserDAO {
 		userToUpdate.setPhone(user.getPhone());
 	}
 
-	@Override
+
 	public User getUser(int id) {
 		// TODO Auto-generated method stub
-		User user = getCurrentSession().get(User.class, id);
+		User user = (User) getCurrentSession().get(User.class, id);
 		return user;
 	}
 
-	@Override
+
 	public void deleteUser(int id) {
 		// TODO Auto-generated method stub
 		User user = getUser(id);
@@ -55,14 +53,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<User> getListUser() {
 		// TODO Auto-generated method stub
 		
 		return getCurrentSession().createQuery("Select e from " + User.class.getName() + " e").list();
 	}
 
-	@Override
 	public User getUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		List<User> list = getListUser();

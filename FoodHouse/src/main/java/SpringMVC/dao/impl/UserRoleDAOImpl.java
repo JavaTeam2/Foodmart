@@ -16,12 +16,12 @@ public class UserRoleDAOImpl implements UserRoleDAO {
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	@Override
+	
 	public void addUserRole(UserRole userRole) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(userRole);
 	}
-	@Override
+
 	public void updateUserRole(UserRole userRole) {
 		// TODO Auto-generated method stub
 		UserRole userRoleToUpdate = getUserRole(userRole.getUserRoleID());
@@ -29,13 +29,13 @@ public class UserRoleDAOImpl implements UserRoleDAO {
 		userRoleToUpdate.setRole(userRole.getRole());
 		getCurrentSession().update(userRoleToUpdate);
 	}
-	@Override
+
 	public UserRole getUserRole(int id) {
 		// TODO Auto-generated method stub
-		UserRole userRole = getCurrentSession().get(UserRole.class, id);
+		UserRole userRole = (UserRole) getCurrentSession().get(UserRole.class, id);
 		return userRole;
 	}
-	@Override
+
 	public void deleteUserRole(int id) {
 		// TODO Auto-generated method stub
 		UserRole userRole = getUserRole(id);
@@ -43,8 +43,8 @@ public class UserRoleDAOImpl implements UserRoleDAO {
 			getCurrentSession().delete(userRole);
 		}
 	}
+	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<UserRole> getUserRoles() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + UserRole.class.getName() + " e").list();
