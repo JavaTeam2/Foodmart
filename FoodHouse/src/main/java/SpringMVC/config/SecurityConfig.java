@@ -38,10 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
         // /userInfo page requires login as USER or ADMIN.
         // If no login, it will redirect to /login page.
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_CUSTOMER', 'ROLE_ADMIN', 'ROLE_SELLER')");
  
         // For ADMIN only.food
         http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+
+        // Bộ phận bán hàng
+        http.authorizeRequests().antMatchers("/seller").access("hasRole('ROLE_SELLER')");
  
         // When the user has logged in as XX.
         // But access a page that requires role YY,
@@ -52,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().and().formLogin()//
                 // Submit URL of login page.
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/login")//
+                .loginPage("/login")
                 .defaultSuccessUrl("/userInfo")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//

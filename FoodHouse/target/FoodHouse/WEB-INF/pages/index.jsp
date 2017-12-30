@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -49,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3layouts-header-top">
 				<div class="w3-header-top-grids">
 					<div class="w3-header-top-left">
-						<p><i class="fa fa-volume-control-phone" aria-hidden="true"></i> +1 234 567 8901</p>
+						<p><i class="fa fa-home" aria-hidden="true"></i> 1st Street , mexico city</p>
 					</div>
 					<div class="w3-header-top-right">
 						<div class="agileinfo-social-grids">
@@ -61,7 +62,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</div>
 						<div class="w3-header-top-right-text">
-							<p><i class="fa fa-home" aria-hidden="true"></i> 1st Street , mexico city</p>
+							<div class="agileinfo-social-grids">
+								<ul>
+									<li><a href="login">Login</a></li>
+									<li><a href="signup">Signup</a></li>
+								</ul>
+							</div>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -80,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 							  </button>
 								 <div class="navbar-brand logo ">
-									<h1><a href="index.html">Food <span>Club</span></a></h1>
+									<h1><a href="home">Food <span>Club</span></a></h1>
 								</div>
 
 							</div>
@@ -88,17 +94,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							 <ul class="nav navbar-nav link-effect-4">
-							<li class="active"><a href="index.html" data-hover="Home">Home</a> </li>
-								<li><a href="about.html" data-hover="About">About </a> </li>
-								<li><a href="gallery.html"  data-hover="Gallery">Gallery</a></li>
-								<li class="dropdown">
-									<a href="codes.html" class="dropdown-toggle" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="icons.html">Icons</a></li>
-										<li><a href="codes.html">Short Codes</a></li>
-									</ul>
-							  </li>
-								<li><a href="contact.html" data-hover="Contact">Contact</a></li>
+							<li class="active"><a href="home" data-hover="Home">Home</a> </li>
+								<li><a href="about" data-hover="About">About </a> </li>
+								<li><a href="gallery"  data-hover="Gallery">Gallery</a></li>
+								<li><a href="our_branches" data-hover="OurBranches">Our Branches</a></li>
+								<li><a href="contact" data-hover="Contact">Contact</a></li>
 							  </ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
@@ -193,113 +193,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="special-top-grids">
 				<div class="w3-agile-special">
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s1.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Phasellus</h4>
-								</div>
-							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s2.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Accumsan</h4>
+					<c:forEach items="${listSpecial }" var="food">
+						<div class="col-md-3 special-grids">
+							<div class="special-img">
+								<img class="img-responsive" src="${food.image }" alt="">
+								<div class="captn">
+									<div class="captn-top">
+										<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
+									</div>
+									<div class="wthree-special-info">
+										<h4>${food.name }</h4>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s3.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Sodales</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s4.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Placerat</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="w3-agile-special">
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s5.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Phasellus</h4>
-								</div>
-							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s4.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Accumsan</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s1.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Sodales</h4>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 special-grids">
-						<div class="special-img">
-							<img class="img-responsive" src="images/s2.jpg" alt="">
-							<div class="captn">
-								<div class="captn-top">
-									<p>Aenean pulvinar ac enimet posuere tincidunt velit Utin tincidunt</p>
-								</div>
-								<div class="wthree-special-info">
-									<h4>Placerat</h4>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -385,7 +293,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-grids">
 				<div class="col-md-3 footer-grid">
 					<div class="footer-grid-heading">
-						<h3><a href="index.html">Food <span>Club</span></a></h3>
+						<h3><a href="home">Food <span>Club</span></a></h3>
 					</div>
 					<div class="agile-footer-info">
 						<p>Maecenas pharetra scelerisque sem quis commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
@@ -419,12 +327,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="footer-grid-info">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="icons.html">Icons</a></li>
-							<li><a href="codes.html">Short Codes</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="home">Home</a></li>
+							<li><a href="about">About</a></li>
+							<li><a href="gallery">Gallery</a></li>
+							<li><a href="icons">Icons</a></li>
+							<li><a href="codes">Short Codes</a></li>
+							<li><a href="contact">Contact</a></li>
 						</ul>
 					</div>
 				</div>

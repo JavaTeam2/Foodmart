@@ -1,0 +1,85 @@
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100vh;
+}
+.dashboard .sidebar{
+    position: relative;
+    width: 30%;
+    max-width: 300px;
+    background-color: #1da1f2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    transition: width 0.1s ease-out;
+}
+.dashboard .toolbar{
+    display: none;
+}
+
+.dashboard .content{
+    flex-grow: 1;
+    padding-top: 50px;
+}
+.toolbar{
+    position: fixed;
+    background-color: #fafafa;
+    height: 40px;
+    width: 100%;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.list .item{
+    height: 50px;
+    background-color: #1da1f2;
+    display: flex;
+    transition: background-color 0.1s ease-out;
+    cursor: default;
+}
+.list a{
+    text-decoration: none;
+}
+.list .item .title{
+    font-size: 1rem;
+    color: #fafdfc;
+    margin: auto;
+}
+.list .item:hover{
+    color: white;
+    background-color: #0d92e3;
+}
+.list .item.active{
+    background-color: #194368;
+}
+@media (max-width: 768px){
+    .dashboard .sidebar{
+        width: 100%;
+        max-width: none;
+        height: 40px;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+    }
+    .dashboard .sidebar .list{
+        flex-direction: row;
+        justify-content: center;
+    }
+    .dashboard .sidebar .item{
+        margin: 0;
+        height:25px;
+        margin-right: 10px;
+        border-radius: 3px;
+        border: 1px solid white;
+        padding: 0 5px;
+    }
+}
