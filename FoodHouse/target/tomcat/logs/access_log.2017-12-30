@@ -228,6 +228,7 @@
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:28:12 +0700] "GET /FoodHouse/admin/edit-categories/1 HTTP/1.1" 200 2682 http-bio-8080-exec-5 570
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:28:21 +0700] "POST /FoodHouse/admin/edit-categories/1 HTTP/1.1" 302 - http-bio-8080-exec-2 680
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:28:21 +0700] "GET /FoodHouse/admin/categories HTTP/1.1" 200 5160 http-bio-8080-exec-2 24
+<<<<<<< HEAD
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:46:31 +0700] "GET /FoodHouse/admin HTTP/1.1" 302 - http-bio-8080-exec-4 113
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:46:31 +0700] "GET /FoodHouse/login HTTP/1.1" 200 1305 http-bio-8080-exec-5 603
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:02:46:31 +0700] "GET /FoodHouse/css/roles.css HTTP/1.1" 304 - http-bio-8080-exec-6 78
@@ -3165,3 +3166,5 @@
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:17:37:43 +0700] "GET /FoodHouse/admin/foods HTTP/1.1" 200 37597 http-bio-8080-exec-2 31
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:17:37:46 +0700] "POST /FoodHouse/admin/foods/delete-foods HTTP/1.1" 400 1062 http-bio-8080-exec-7 33
 0:0:0:0:0:0:0:1 - - [30/Dec/2017:17:37:48 +0700] "GET /FoodHouse/admin/foods HTTP/1.1" 200 37597 http-bio-8080-exec-1 29
+=======
+>>>>>>> 5e976e4f6384671f08994cad5ceb6522913c126a
