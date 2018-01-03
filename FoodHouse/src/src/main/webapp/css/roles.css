@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+/*hide role-specific div html*/
+div.anonymous,
+div.customer, 
+div.manager, 
+div.admin {
+display: none;
+}

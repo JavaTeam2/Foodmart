@@ -8,7 +8,11 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
 <title>Edit Food</title>
+=======
+<title>Edit Categories</title>
+>>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"

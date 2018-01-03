@@ -21,8 +21,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 
 
@@ -32,8 +35,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -691,6 +697,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li id="menu-home"><a href="#"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
 
 				<li><a href="admin/categories"><i
+<<<<<<< HEAD
 						class="fa fa-align-justify"></i><span>Categories </span></a></li>
 
 				<li><a href="admin/foods"><i class="fa fa-book nav_icon"></i><span>
@@ -700,6 +707,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							Branchs</span></a></li>
 
 
+=======
+						class="glyphicon glyphicon-th-list"></i><span>Categories
+							Foods</span></a></li>
+
+				<li><a href="admin/foods"><i
+						class="fa fa-book nav_icon"></i><span> Foods</span></a></li>
+
+				<li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
+				<li id="menu-academico"><a href="#"><i
+						class="fa fa-file-text"></i><span>Pages</span><span
+						class="fa fa-angle-right" style="float: right"></span></a>
+					<ul id="menu-academico-sub">
+						<li id="menu-academico-boletim"><a href="login.html">Login</a></li>
+						<li id="menu-academico-avaliacoes"><a href="signup.html">Sign
+								Up</a></li>
+					</ul></li>
+>>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 
 				<li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
 				<li><a href="#"><i class="fa fa-envelope"></i><span>Mailbox</span><span
