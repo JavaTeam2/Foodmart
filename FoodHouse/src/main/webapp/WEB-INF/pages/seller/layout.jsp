@@ -7,10 +7,14 @@
     <title><tiles:getAsString name="title"/></title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="css/seller.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <script src="js/seller.js" defer></script>
+    <link href="<c:url value='/css/seller.css'/>" rel="stylesheet"/>
+    <script src="<c:url value='/js/jquery-3.2.1.min.js'/>"></script>
+    <script src="<c:url value='/js/uglipop.min.js'/>"></script>
+    <link href="<c:url value='/css/font-awesome.css'/>" rel="stylesheet"/>
+    <link href="<c:url value='/'/><tiles:getAsString name='css'/>" rel="stylesheet" />
+    <script src="<c:url value='/js/seller/seller.js'/>"  defer></script>
+    <script src="<c:url value='/'/><tiles:getAsString name='js'/>"></script>
+    <script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 </head>
 <body>
     <div class="dashboard">

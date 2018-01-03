@@ -4,14 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -31,6 +24,7 @@ public class Order {
 	private String note;
 	private Set<OrderDetail> listUserDetails = new HashSet<OrderDetail>(0);
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	public int getId() {
 		return id;
@@ -124,7 +118,7 @@ public class Order {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order_id")
 	public Set<OrderDetail> getListUserDetails() {
 		return listUserDetails;
 	}

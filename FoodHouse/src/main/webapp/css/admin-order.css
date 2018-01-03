@@ -1,0 +1,264 @@
+.header-page{
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-left: 10px;
+}
+button{
+    border: none;
+}
+.table{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 20px);
+    margin: 10px;
+    height: calc(100% - 85px);
+}
+.table .toolbar-operation{
+    display: flex;
+    flex-direction: row;
+}
+.table .toolbar-operation .button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:40px;
+    color: white;
+}
+.table .toolbar-operation .button-add{
+    width: 50%;
+    background-color: #1da1f2;
+}
+.table .toolbar-operation .button-filter{
+    width: 50%;
+    background-color: gray;
+}
+.button-icon{
+    display: none;
+}
+.button-text{
+    font-size: 1rem;
+}
+
+.table .create-order-form{
+    max-height: 0;
+    overflow: hidden;
+}
+.table .create-order-form.show{
+    max-height: none;
+}
+
+.table .body{
+    height: 500px;
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+.table .row{
+    display: flex;
+    flex-direction: row;
+    padding: 0 5px;
+}
+.table .row.header{
+    background-color: #fafafa;
+    height: 40px;
+    align-items: center;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border-bottom: solid 2px #eaeaea;
+}
+.table .row:not(.header):nth-child(odd){
+    background-color: #f5fbff;
+}
+.table .row div{
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+}
+.table .row .id{
+    width: 10%;
+}
+.table .row .customer-name{
+    width: 20%;
+}
+.table .row .order-details{
+    width: 20%;
+}
+.table .row .total-money{
+    width: 20%;
+}
+.table .row .status{
+    width: 15%;
+}
+.table .row .created-date{
+    width: 15%;
+}
+@media (max-width: 575px){
+    .table .row{
+        flex-direction: column;
+    }
+    .table .row.header{
+        height: auto;
+    }
+    .table .row div{
+        width: 100% !important;
+        justify-content: center;
+    }
+    .button-text{
+        display: none;
+    }
+    .button-icon{
+        display: inline-block;
+    }
+}
+#create-order{
+    display: none;
+}
+.create-order{
+    background-color: white;
+    border-radius: 5px;
+    width: 900px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+}
+.create-order-content{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.create-order-info{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    justify-content: center;
+}
+.create-order-info input[type="text"], .create-order-info input[type="number"]{
+    border: 1px solid gray;
+    border-radius: 2px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: 30px;
+    font-size: 1rem;
+}
+
+.create-order-menu{
+    width: 35%;
+    background-color: #f1f1f1;
+    border-top-right-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.create-order-menu .title{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.2rem;
+}
+
+.create-order-menu .order-list{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+.create-order-menu .order-list .order {
+    display: flex;
+    flex-direction: row;
+}
+.create-order-menu .order-list .order .food-name{
+    width: 60%;
+    word-break: break-all;
+}
+.create-order-menu .order-list .order .food-quantity{
+    width: 20%;
+    text-align: center;
+}
+.create-order-menu .order-list .order .food-price{
+    width: 20%;
+    text-align: center;
+}
+
+
+.create-order button{
+    height: 150px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: background-color 0.1s ease-out;
+    background-color: #dddddd;
+}
+.create-order button:hover{
+    background-color: #ff7e00;
+    color: white;
+}
+.create-order-info .control{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.create-order-info .control.error{
+    border-color: red !important;
+}
+.create-order-info label.error{
+    display: none!important;
+}
+
+.create-order-item{
+    width: 30%;
+    background-color: #9d9d9d;
+    border-top-right-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.create-order-item img{
+    width: 100%;
+    pointer-events: none;
+}
+
+.create-order-item .search-item{
+    width: 100%;
+}
+.create-order-item .list-items{
+    overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
+}
+.create-order-item .list-items .item{
+    width: 50%;
+    height: 120px;
+    background-color: gray;
+    overflow: hidden;
+    position: relative;
+}
+.create-order-item .list-items .item input{
+    opacity: 0;
+    position: absolute;
+    border: none;
+    text-align: center;
+    outline: none;
+    background-color: #1da1f2;
+    color: white;
+    font-size: 1.2rem;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, top 0.2s ease-out, left 0.2s ease-out;
+}
+.create-order-item .list-items .item.selected input{
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(-50%) scale(0.7);
+}
+.create-order-item .list-items .item.selected:hover input{
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+}
+.form-create-order{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    overflow: hidden;
+}

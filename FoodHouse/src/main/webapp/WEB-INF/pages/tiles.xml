@@ -11,6 +11,8 @@
     <!-- Seller views -->
     <definition name="seller-index" extends="seller-layout">
         <put-attribute name="body" value="/WEB-INF/pages/seller/index.jsp"/>
+        <put-attribute name="css" value="css/admin-order.css"/>
+        <put-attribute name="js" value="js/seller/order.js"/>
     </definition>
     
 </tiles-definitions>

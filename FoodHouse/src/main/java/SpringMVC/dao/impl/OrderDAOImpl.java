@@ -2,6 +2,8 @@ package SpringMVC.dao.impl;
 
 import java.util.List;
 
+import SpringMVC.entity.OrderDetail;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +65,16 @@ public class OrderDAOImpl implements OrderDAO{
 	@Override
 	public List<Order> getOrders() {
 		// TODO Auto-generated method stub
-		return getCurrentSession().createQuery("Select e from " + Order.class.getName() + " e").list();
+		List<Order> orderList = getCurrentSession().createQuery("Select e from " + Order.class.getName() + " e").list();
+		for (Order order: orderList) {
+			Hibernate.initialize(order.getListUserDetails());
+			for (OrderDetail orderDetail: order.getListUserDetails()){
+				Hibernate.initialize(orderDetail.getFood_id());
+				orderDetail.getFood_id().getName();
+			}
+			order.getListUserDetails().size();
+		}
+		return	orderList;
 	}
 
 }

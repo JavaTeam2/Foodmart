@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `branches` (
 
 CREATE TABLE IF NOT EXISTS `orders`(
 	`id` int unsigned NOT NULL AUTO_INCREMENT,
-	`customer_id` int unsigned NOT NULL,
+	`customer_id` int unsigned,
 	`branch_id` int unsigned NOT NULL,
 	`customer_name` nvarchar(64) NOT NULL,
 	`customer_phone` varchar(16)  NOT NULL,
@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `orders`(
 	`customer_address` nvarchar(128)  NOT NULL,
 	`customer_city` nvarchar(64) NOT NULL,
 	`customer_province` nvarchar(64) NOT NULL,
-	`order_detail_id` int unsigned NOT NULL,
     `total_money` double unsigned NOT NULL,
     `date_time` datetime NOT NULL, 
     `status` nvarchar(64) COLLATE utf8_bin NOT NULL,

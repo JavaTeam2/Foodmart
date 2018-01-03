@@ -8,6 +8,7 @@ public interface BranchService {
 	public void addBranch(Branch branch);
 	public void updateBranch(Branch branch);
 	public Branch getBranch(int id);
+	public Branch getBranchHasFood(int id);
 	public void deleteBranch(int id);
 	public List<Branch> getBranches();
 	public List<Branch> getHCMBranches(List<Branch> list);

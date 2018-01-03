@@ -2,6 +2,7 @@ package SpringMVC.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,11 @@ public class BranchDAOImpl implements BranchDAO {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + Branch.class.getName() + " e").list();
 	}
-	
+	@Override
+	public Branch getBranchHasFoods(int id) {
+		Branch branch = getCurrentSession().get(Branch.class, id);
+		Hibernate.initialize(branch.getFoods());
+		branch.getFoods().size();
+		return branch;
+	}
 }

@@ -3,6 +3,8 @@ package SpringMVC.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import SpringMVC.entity.Food;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,7 +88,11 @@ public class BranchServiceImpl implements BranchService {
 		// TODO Auto-generated method stub
 		return branchDAO.getBranch(id);
 	}
-
+	@Override
+	public Branch getBranchHasFood(int id){
+		Branch branch = branchDAO.getBranchHasFoods(id);
+		return branch;
+	}
 	@Override
 	public void deleteBranch(int id) {
 		// TODO Auto-generated method stub
