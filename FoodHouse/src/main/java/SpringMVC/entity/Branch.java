@@ -1,5 +1,6 @@
 package SpringMVC.entity;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -87,18 +88,18 @@ public class Branch {
 	}
 	
 	@Column(name = "open_time", nullable = false)
-	public Date getOpen_time() {
-		return open_time;
+	public Time getOpen_time() {
+		return (Time) open_time;
 	}
-	public void setOpen_time(Date open_time) {
+	public void setOpen_time(Time open_time) {
 		this.open_time = open_time;
 	}
 	
 	@Column(name = "close_time", nullable = false)
-	public Date getClose_time() {
-		return close_time;
+	public Time getClose_time() {
+		return (Time) close_time;
 	}
-	public void setClose_time(Date close_time) {
+	public void setClose_time(Time close_time) {
 		this.close_time = close_time;
 	}
 	

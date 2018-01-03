@@ -124,7 +124,7 @@ public class Order {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order_id")
 	public Set<OrderDetail> getListUserDetails() {
 		return listUserDetails;
 	}

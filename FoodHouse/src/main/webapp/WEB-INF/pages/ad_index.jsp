@@ -18,7 +18,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
 
 
 
@@ -680,27 +690,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul id="menu">
 				<li id="menu-home"><a href="#"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
 
-				<li><a href="admin/categories"><i class="glyphicon glyphicon-th-list"></i><span>Categories
+				<li><a href="admin/categories"><i
+						class="fa fa-align-justify"></i><span>Categories </span></a></li>
+
+				<li><a href="admin/foods"><i class="fa fa-book nav_icon"></i><span>
 							Foods</span></a></li>
 
-				<li id="menu-comunicacao"><a href="#"><i
-						class="fa fa-book nav_icon"></i><span>Element</span><span
-						class="fa fa-angle-right" style="float: right"></span></a>
-					<ul id="menu-comunicacao-sub">
-						<li id="menu-mensagens" style="width: 120px"><a
-							href="buttons.html">Buttons</a></li>
-						<li id="menu-arquivos"><a href="typography.html">Typography</a></li>
-						<li id="menu-arquivos"><a href="icons.html">Icons</a></li>
-					</ul></li>
-				<li><a href="maps.html"><i class="fa fa-map-marker"></i><span>Maps</span></a></li>
-				<li id="menu-academico"><a href="#"><i
-						class="fa fa-file-text"></i><span>Pages</span><span
-						class="fa fa-angle-right" style="float: right"></span></a>
-					<ul id="menu-academico-sub">
-						<li id="menu-academico-boletim"><a href="login.html">Login</a></li>
-						<li id="menu-academico-avaliacoes"><a href="signup.html">Sign
-								Up</a></li>
-					</ul></li>
+				<li><a href="admin/branchs"><i class="fa fa-map-marker"></i><span>
+							Branchs</span></a></li>
+
+
 
 				<li><a href="charts.html"><i class="fa fa-bar-chart"></i><span>Charts</span></a></li>
 				<li><a href="#"><i class="fa fa-envelope"></i><span>Mailbox</span><span

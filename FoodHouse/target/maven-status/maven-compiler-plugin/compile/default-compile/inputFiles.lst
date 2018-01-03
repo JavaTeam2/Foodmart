@@ -2,6 +2,7 @@ E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\impl\OrderDAOImpl.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\UserDAO.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\impl\CategoriesDAOImpl.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\service\impl\FoodServiceImpl.java
+E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\controller\AdminFoodsController.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\controller\HomeController.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\service\impl\UserRoleServiceImpl.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\service\UserRoleService.java
@@ -55,5 +56,6 @@ E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\controller\GalleryControll
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\impl\VisitStatisticsDAOImpl.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\entity\Categories.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\service\impl\UserServiceImpl.java
+E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\controller\AdminBranchsController.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\CostsIncurredDAO.java
 E:\Eclipse\Foodmart\FoodHouse\src\main\java\SpringMVC\dao\BranchDAO.java

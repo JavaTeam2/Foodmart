@@ -31,7 +31,7 @@ public class BranchDAOImpl implements BranchDAO {
 		branchToUpdate.setAddress(branch.getAddress());
 		branchToUpdate.setProvince(branch.getProvince());
 		branchToUpdate.setImage(branch.getImage());
-		branchToUpdate.setPhone(branch.getImage());
+		branchToUpdate.setPhone(branch.getPhone());
 		branchToUpdate.setTable_quantity(branch.getTable_quantity());
 		getCurrentSession().update(branchToUpdate);
 	}

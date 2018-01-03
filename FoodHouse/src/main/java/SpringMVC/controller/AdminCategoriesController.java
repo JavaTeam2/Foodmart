@@ -37,7 +37,7 @@ public class AdminCategoriesController {
 	}
 
 	@RequestMapping(value = "admin/categories/add", method = RequestMethod.POST)
-	public String addCategories(Model model, @ModelAttribute("bookCategories") Categories categories,
+	public String addCategories(Model model, @ModelAttribute("categoriesForm") Categories categories,
 			BindingResult result) {
 		String message = "";
 
