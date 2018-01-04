@@ -76,20 +76,14 @@ button{
 .table .row .id{
     width: 10%;
 }
-.table .row .customer-name{
+.table .row .cause{
+    width: 40%;
+}
+.table .row .cost{
     width: 20%;
 }
-.table .row .order-details{
-    width: 20%;
-}
-.table .row .total-money{
-    width: 20%;
-}
-.table .row .status{
-    width: 15%;
-}
-.table .row .created-date{
-    width: 15%;
+.table .row .date{
+    width: 30%;
 }
 @media (max-width: 575px){
     .table .row{
@@ -261,4 +255,23 @@ button{
     flex-direction: column;
     margin-bottom: 0;
     overflow: hidden;
+}
+.form-cost{
+    margin-bottom: 0;
+    display: flex;
+}
+.form-cost label.error{
+    display: none !important;
+}
+.form-cost input.error{
+    border: solid 1px red;
+}
+.form-cost #submit{
+    width: 10%;
+}
+.form-cost #cause{
+    width: 45%;
+}
+.form-cost #cost{
+    width: 45%;
 }

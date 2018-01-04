@@ -89,37 +89,7 @@
             <div class="create-order-menu">
                 <div class="title">Danh sách món ăn</div>
                 <div class="order-list">
-                    <div class="order">
-                        <div class="food-name">
-                            Tôm hùm
-                        </div>
-                        <div class="food-quantity">
-                            x3
-                        </div>
-                        <div class="food-price">
-                            500000
-                        </div>
-                    </div><div class="order">
-                        <div class="food-name">
-                            Tôm hùm
-                        </div>
-                        <div class="food-quantity">
-                            x3
-                        </div>
-                        <div class="food-price">
-                            500000
-                        </div>
-                    </div><div class="order">
-                        <div class="food-name">
-                            Tôm hùm
-                        </div>
-                        <div class="food-quantity">
-                            x3
-                        </div>
-                        <div class="food-price">
-                            500000
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="create-order-item">

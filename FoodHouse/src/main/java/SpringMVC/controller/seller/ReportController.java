@@ -20,6 +20,7 @@ public class ReportController {
     private BranchService branchService;
     @RequestMapping(path="/seller/report")
     public String index(Model model){
+        model.addAttribute("reports", costsIncurredService.getListCostsIncurred());
         return "report-index";
     }
 
