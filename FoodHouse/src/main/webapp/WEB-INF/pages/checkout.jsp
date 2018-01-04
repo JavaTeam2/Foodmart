@@ -317,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<form:input type="hidden" path="customer_id.id"/>
 												<form:input type="hidden" path="customer_province"/>
 												<form:input type="hidden" path="total_money"/>
-												<form:input type="hidden" path="date_time"/>
+												<form:input type="text" path="date_time"/>
 												<form:input type="hidden" path="status"/>
 												<%-- <form:input type="" path="listUserDetails"/> --%>
 												<c:forEach items="${cartForm.listUserDetails }" var = "cartLine" varStatus="i">

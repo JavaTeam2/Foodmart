@@ -1,7 +1,9 @@
 package SpringMVC.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -27,6 +29,7 @@ public class User implements Serializable{
 	private String province;
 	private String address;
 	private String phone;
+	private List<Order> orders = new ArrayList<Order>(0);
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	private Set<VisitStatistics> visitStatistics = new HashSet<VisitStatistics>(0);
 	
@@ -147,7 +150,14 @@ public class User implements Serializable{
 	public void setVisitStatistics(Set<VisitStatistics> visitStatistics) {
 		this.visitStatistics = visitStatistics;
 	}
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer_id")
+	public List<Order> getOrders(){
+		return this.orders;
+	}
+	public void setOrders(List<Order> orders){
+		this.orders = orders;
+	}
 	
 	/*private String username;
 	private String password;

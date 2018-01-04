@@ -51,14 +51,7 @@ public class OrderHistoryController {
 	    	  model.addAttribute("listOrderHistory", listOrder);
 	      }
 	      else {
-	    	  List<Order> listOrder = orderService.getOrders();
-	  		List<Order> listUserOrder = new ArrayList<Order>();
-	  		for(int i = 0 ; i < listOrder.size(); i++) {
-	  			if(listOrder.get(i).getCustomer_id().getId() == user.getId()) {
-	  				listUserOrder.add(listOrder.get(i));
-	  			}
-	  		}
-	  		
+	  		List<Order> listUserOrder = user.getOrders();
 	  		model.addAttribute("listOrderHistory", listUserOrder);
 	      }
 	      model.addAttribute("username", username);

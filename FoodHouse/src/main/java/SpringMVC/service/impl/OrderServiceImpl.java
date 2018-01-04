@@ -50,14 +50,8 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public List<Order> getOrderByUsername(User user) {
 		// TODO Auto-generated method stub
-		List<Order> listOrder = getOrders();
 		List<Order> listUserOrder = new ArrayList<Order>();
-		for(int i = 0 ; i < listOrder.size(); i++) {
-			if(listOrder.get(i).getCustomer_id().getId() == user.getId()) {
-				listUserOrder.add(listOrder.get(i));
-			}
-		}
-		return listUserOrder;
+		return user.getOrders();
 	}
 
 	@Override
