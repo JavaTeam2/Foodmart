@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -31,7 +32,7 @@ public class Order {
 	private String customer_city;
 	private String customer_province;
 	private double total_money;
-	private Time date_time;
+	private Date date_time;
 	private String status;
 	private String note;
 	private List<OrderDetail> listUserDetails = new ArrayList<OrderDetail>();
@@ -45,7 +46,7 @@ public class Order {
 	}
 	
 	public Order(User customer_id, Branch branch_id, String customer_name, String customer_phone, String customer_email,
-			String customer_address, String customer_city, String customer_province, double total_money, Time date_time,
+			String customer_address, String customer_city, String customer_province, double total_money, Date date_time,
 			String status, String note) {
 		super();
 		this.customer_id = customer_id;
@@ -63,6 +64,7 @@ public class Order {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	public int getId() {
 		return id;
@@ -136,10 +138,10 @@ public class Order {
 		this.total_money = total_money;
 	}
 	@Column(name = "date_time", nullable = false)
-	public Time getDate_time() {
-		return (Time) date_time;
+	public Date getDate_time() {
+		return (Date) date_time;
 	}
-	public void setDate_time(Time date_time) {
+	public void setDate_time(Date date_time) {
 		this.date_time = date_time;
 	}
 	@Column(name = "status", length = 64)

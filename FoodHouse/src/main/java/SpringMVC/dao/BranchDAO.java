@@ -10,4 +10,5 @@ public interface BranchDAO {
 	public Branch getBranch(int id);
 	public void deleteBranch(int id);
 	public List<Branch> getBranches();
+	public Branch getBranchHasFoods(int id);
 }

@@ -1,11 +1,11 @@
 INSERT INTO `users` (`name`, `email`, `username`, `password`, `city`, `province`, `address`, `phone`) VALUES
 ('customer', 'customer@gmail.com', 'customer', '123456', 'Hồ Chí Minh', '', '170 Quốc lộ 1A', '0913937660'),
-('manager', 'manager@gmail.com', 'manager', '123456', 'Hồ Chí Minh', '', '', ''),
+('seller', 'manager@gmail.com', 'seller', '123456', 'Hồ Chí Minh', '', '', ''),
 ('admin', 'admin@gmail.com', 'admin', '123456', 'Hồ Chí Minh', '', '', '');
 
 INSERT INTO `user_roles`(`username`, `role`) VALUES
 ('customer', 'ROLE_CUSTOMER'),
-('manager', 'ROLE_MANAGER'),
+('seller', 'ROLE_SELLER'),
 ('admin', 'ROLE_ADMIN');
 
 INSERT INTO `foods` (`name`, `price`, `price_promotion`, `image`, `description`) VALUES

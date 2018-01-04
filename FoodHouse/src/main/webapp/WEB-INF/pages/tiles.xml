@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+
+    <!-- Seller layout -->
+    <definition name="seller-layout" template="/WEB-INF/pages/seller/layout.jsp">
+        <put-attribute name="title" value="Bộ phận bán hàng" />
+    </definition>
+    <!-- Seller views -->
+    <definition name="seller-index" extends="seller-layout">
+        <put-attribute name="body" value="/WEB-INF/pages/seller/index.jsp"/>
+        <put-attribute name="css" value="css/admin-order.css"/>
+        <put-attribute name="js" value="js/seller/order.js"/>
+    </definition>
+    <!-- Reports views -->
+    <definition name="report-index" extends="seller-layout">
+        <put-attribute name="body" value="/WEB-INF/pages/seller/report.jsp"/>
+        <put-attribute name="css" value="css/admin-report.css"/>
+        <put-attribute name="js" value="js/seller/report.js"/>
+    </definition>
+    
+</tiles-definitions>
