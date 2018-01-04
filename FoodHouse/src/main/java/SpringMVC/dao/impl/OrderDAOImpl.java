@@ -39,7 +39,7 @@ public class OrderDAOImpl implements OrderDAO{
 		orderToUpdate.setTotal_money(order.getTotal_money());
 		orderToUpdate.setDate_time(order.getDate_time());
 		orderToUpdate.setStatus(order.getStatus());
-		orderToUpdate.setNote(order.getStatus());
+		orderToUpdate.setNote(order.getNote());
 		getCurrentSession().update(orderToUpdate);
 	}
 

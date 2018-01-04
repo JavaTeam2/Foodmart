@@ -3,6 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="SpringMVC.entity.Food"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- menu -->
 <link type="text/css" rel="stylesheet" href="css/cm-overlay.css" />
 <!-- //menu -->
-
+<!-- product hover -->
+<link href="css/product-hover.css" rel="stylesheet"> 
+<!-- //product hover -->
+<!-- cart -->
+<link href="css/shopping-item.css" rel="stylesheet">
+<!-- //cart --> 
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
@@ -57,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3layouts-header-top">
 				<div class="w3-header-top-grids">
 					<div class="w3-header-top-left">
-						<p><i class="fa fa-home" aria-hidden="true"></i> 1st Street , mexico city</p>
+							<p>
+								<i class="fa fa-home" aria-hidden="true">1st Street , mexico city</i>
+							</p>
 					</div>
 					<div class="w3-header-top-right">
 						<div class="agileinfo-social-grids">
@@ -71,11 +79,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3-header-top-right-text">
 							<div class="agileinfo-social-grids">
 								<ul>
-									<li><a href="login">Login</a></li>
-									<li><a href="signup">Signup</a></li>
+									<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+										<li><a href="login">Login</a></li>
+										<li><a href="signup">Signup</a></li>
+									</sec:authorize>
+									<sec:authorize access="hasRole('CUSTOMER')">
+										<li><p>Hi, ${username }</p></li>
+										<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+									
+									</sec:authorize>
+									
 								</ul>
+								
 							</div>
+							
 						</div>
+
 						<div class="clearfix"> </div>
 					</div>
 					<div class="clearfix"> </div>
@@ -109,13 +128,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							  </ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
-			
-					<div class="header-left">
-						<ul>
+			<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+					<div class="header-left shopping-item" style="margin-top: 10px;">
+						<!-- <ul>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 							<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
-						</ul>
+						</ul> -->
+						
+    						<a href="cart.html">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
+    					
+						<!-- <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a> -->
+						
 					</div>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+			<div class="header-left">
+				<ul>
+					<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
+					<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
+				</ul>
+			</div>
+			</sec:authorize>
 					<div class="clearfix"></div>	
 				</div>
 			</div>
@@ -141,18 +174,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_tab_img">
 							<c:forEach items="${listFood }" var="food">
 								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
+									<%-- <div class="demo">
 										<a class="cm-overlay" href="${food.image }">
 										  <figure class="imghvr-shutter-in-out-diag-2"><img src="${food.image }" alt=" " class="img-responsive" />
 										  </figure>
 										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>${food.name }</h5>
-										<div class="product-carousel-price">
-	                                    	<ins>$${food.price }</ins> <del>$${food.price_promotion }</del>
-	                                	</div> 
-									</div>
+									</div> --%>
+									<div class="single-product">
+										<div class="product-f-image">
+		                                    <a class="cm-overlay" href="${food.image }">
+											  <figure class="imghvr-shutter-in-out-diag-2"><img src="${food.image }" alt=" " class="img-responsive" />
+											  </figure>
+											</a>
+		                                    <div class="product-hover">
+		                                    	<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+												   <a href="${pageContext.request.contextPath}/buyProduct?code=${food.id}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+												</sec:authorize>
+		                    					<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+												   <a href="${pageContext.request.contextPath}/userBuyProduct?code=${food.id}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+												</sec:authorize>
+		                                        
+		                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+		                                    </div>
+                                		</div>
+										<div class="agile-gallery-info">
+											<h5>${food.name }</h5>
+											<div class="product-carousel-price">
+		                                    	<ins>$${food.price }</ins> <del>$${food.price_promotion }</del>
+		                                	</div> 
+										</div>
+									 </div>
+									
 								</div>
 							</c:forEach>
 							<div class="clearfix"> </div>
@@ -162,17 +214,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_tab_img">
 							<c:forEach items="${listStarters }" var="startersFood">
 								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="${startersFood.image }">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="${startersFood.image }" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>${startersFood.name }</h5>
-										<div class="product-carousel-price">
-	                                    	<ins>$${startersFood.price }</ins> <del>$${startersFood.price_promotion }</del>
-	                                	</div> 
+									<div class="single-product"> 
+										<div class="product-f-image">
+		                                    <a class="cm-overlay" href="${startersFood.image }">
+											  <figure class="imghvr-shutter-in-out-diag-2"><img src="${startersFood.image }" alt=" " class="img-responsive" />
+											  </figure>
+											</a>
+		                                    <div class="product-hover">
+		                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+		                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+		                                    </div>
+                                		</div>
+                                		<div class="agile-gallery-info">
+											<h5>${startersFood.name }</h5>
+											<div class="product-carousel-price">
+		                                    	<ins>$${startersFood.price }</ins> <del>$${startersFood.price_promotion }</del>
+		                                	</div> 
+										</div>
 									</div>
 								</div>
 							</c:forEach>
@@ -183,17 +241,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_tab_img">
 							<c:forEach items="${listMainCourse }" var="mainCourseFood">
 								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="${mainCourseFood.image }">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="${mainCourseFood.image }" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>${mainCourseFood.name }</h5>
-										<div class="product-carousel-price">
-	                                    	<ins>$${mainCourseFood.price }</ins> <del>$${mainCourseFood.price_promotion }</del>
-	                                	</div> 
+									<div class="single-product"> 
+										<div class="product-f-image">
+		                                    <a class="cm-overlay" href="${mainCourseFood.image }">
+											  <figure class="imghvr-shutter-in-out-diag-2"><img src="${mainCourseFood.image }" alt=" " class="img-responsive" />
+											  </figure>
+											</a>
+		                                    <div class="product-hover">
+		                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+		                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+		                                    </div>
+                                		</div>
+                                		<div class="agile-gallery-info">
+											<h5>${mainCourseFood.name }</h5>
+											<div class="product-carousel-price">
+		                                    	<ins>$${mainCourseFood.price }</ins> <del>$${mainCourseFood.price_promotion }</del>
+		                                	</div> 
+										</div>
 									</div>
 								</div>
 							</c:forEach>
@@ -205,18 +269,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_tab_img">
 							<c:forEach items="${listSalads }" var="saladsFood">
 								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="${saladsFood.image }">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="${saladsFood.image }" alt=" " class="img-responsive">
-											</figure>
-										</a>
+									<div class="single-product"> 
+										<div class="product-f-image">
+		                                    <a class="cm-overlay" href="${saladsFood.image }">
+											  <figure class="imghvr-shutter-in-out-diag-2"><img src="${saladsFood.image }" alt=" " class="img-responsive" />
+											  </figure>
+											</a>
+		                                    <div class="product-hover">
+		                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+		                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+		                                    </div>
+                                		</div>
+                                		<div class="agile-gallery-info">
+											<h5>${saladsFood.name }</h5>
+											<div class="product-carousel-price">
+		                                    	<ins>$${saladsFood.price }</ins> <del>$${saladsFood.price_promotion }</del>
+		                                	</div> 
+										</div>
 									</div>
-									<div class="agile-gallery-info">
-										<h5>${saladsFood.name }</h5>
-										<div class="product-carousel-price">
-	                                    	<ins>$${saladsFood.price }</ins> <del>$${saladsFood.price_promotion }</del>
-	                                	</div> 
-									</div>
+									
 								</div>
 							</c:forEach>
 							<div class="clearfix"> </div>
@@ -226,17 +297,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_tab_img">
 							<c:forEach items="${listDesserts }" var="dessertsFood">
 								<div class="col-sm-3 w3_tab_img_left">
-									<div class="demo">
-										<a class="cm-overlay" href="${dessertsFood.image }">
-											<figure class="imghvr-shutter-in-out-diag-2"><img src="${dessertsFood.image }" alt=" " class="img-responsive">
-											</figure>
-										</a>
-									</div>
-									<div class="agile-gallery-info">
-										<h5>${dessertsFood.name }</h5>
-										<div class="product-carousel-price">
-	                                    	<ins>$${dessertsFood.price }</ins> <del>$${dessertsFood.price_promotion }</del>
-	                                	</div> 
+									<div class="single-product"> 
+										<div class="product-f-image">
+		                                    <a class="cm-overlay" href="${dessertsFood.image }">
+											  <figure class="imghvr-shutter-in-out-diag-2"><img src="${dessertsFood.image }" alt=" " class="img-responsive" />
+											  </figure>
+											</a>
+		                                    <div class="product-hover">
+		                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+		                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+		                                    </div>
+                                		</div>
+                                		<div class="agile-gallery-info">
+											<h5>${dessertsFood.name }</h5>
+											<div class="product-carousel-price">
+		                                    	<ins>$${dessertsFood.price }</ins> <del>$${dessertsFood.price_promotion }</del>
+		                                	</div> 
+										</div>
 									</div>
 								</div>
 							</c:forEach>

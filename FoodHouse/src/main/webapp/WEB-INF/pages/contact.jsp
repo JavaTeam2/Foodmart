@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <!--// css -->
+<link href="css/shopping-item.css" rel="stylesheet">
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
@@ -58,8 +60,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3-header-top-right-text">
 							<div class="agileinfo-social-grids">
 								<ul>
-									<li><a href="login">Login</a></li>
-									<li><a href="signup">Signup</a></li>
+									<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+										<li><a href="login">Login</a></li>
+										<li><a href="signup">Signup</a></li>
+									</sec:authorize>
+									<sec:authorize access="hasRole('CUSTOMER')">
+										<li><p>Hi, ${username }</p></li>
+										<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+									
+									</sec:authorize>
 								</ul>
 							</div>
 						</div>
@@ -91,24 +100,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="home" data-hover="Home">Home</a> </li>
 								<li><a href="about" data-hover="About">About </a> </li>
 								<li><a href="gallery"  data-hover="Gallery">Gallery</a></li>
-								<li class="dropdown">
-									<a href="codes.html" class="dropdown-toggle" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="icons">Icons</a></li>
-										<li><a href="codes">Short Codes</a></li>
-									</ul>
-							  </li>
+								<li><a href="our_branches" data-hover="OurBranches">Our Branches</a></li>
 								<li class="active"><a href="contact.html" data-hover="Contact">Contact</a></li>
 							  </ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
 			
-					<div class="header-left">
-						<ul>
+					<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+					<div class="header-left shopping-item" style="margin-top: 10px;">
+						<!-- <ul>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 							<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
-						</ul>
+						</ul> -->
+						
+    						<a href="cart.html">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
+    					
+						<!-- <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a> -->
+						
 					</div>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+			<div class="header-left">
+				<ul>
+					<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
+					<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
+				</ul>
+			</div>
+			</sec:authorize>
 					<div class="clearfix"></div>	
 				</div>
 			</div>

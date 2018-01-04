@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import SpringMVC.entity.Order;
 import SpringMVC.entity.User;
-
+import SpringMVC.service.OrderService;
 import SpringMVC.service.UserService;
+import SpringMVC.util.Utils;
 
 @Controller
 public class LoginController {
@@ -31,6 +33,8 @@ public class LoginController {
 	
 	@Autowired
 	private UserDetailsService userRoleService;
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
    public String welcomePage(Model model) {
@@ -45,15 +49,32 @@ public class LoginController {
    }
  
    @RequestMapping(value = "/login", method = RequestMethod.GET)
-   public String loginPage(Model model ) {
-        
-       return "loginPage";
+   public String loginPage(Model model, HttpServletRequest request) {
+	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String username = auth.getName();
+	      
+	      Order myCart = null;
+		 	if(username.equals("anonymousUser")) {
+		    	  myCart = Utils.getOrderInSession(request);
+		    	  model.addAttribute("cartForm", myCart);
+		      }
+		      else {
+		    	  List<Order> listOrder = orderService.getOrderByUsername(userService.getUserByUsername(username));
+		    	  for(int i = 0; i < listOrder.size(); i++) {
+		    		  if(listOrder.get(i).getStatus().equals("Choose")) {
+		    			  model.addAttribute("cartForm", listOrder.get(i));
+		    			  model.addAttribute("count",listOrder.get(i).getListUserDetails().size());
+		    		  }
+		    	  }
+		    	  
+		      }
+       return "login";
    }
  
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(Model model) {
-       model.addAttribute("title", "Logout");
-       return "logoutSuccessfulPage";
+       //model.addAttribute("title", "Logout");
+       return "redirect:/home";
    }
  
    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
@@ -64,7 +85,7 @@ public class LoginController {
  
        System.out.println("User Name: "+ userName);
  
-       return "userInfoPage";
+       return "gallery";
    }
  
    @RequestMapping(value = "/403", method = RequestMethod.GET)

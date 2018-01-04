@@ -1,14 +1,16 @@
 package SpringMVC.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import SpringMVC.dao.FoodDAO;
+import SpringMVC.entity.Categories;
 import SpringMVC.entity.Food;
 import SpringMVC.service.FoodService;
 @Service
@@ -18,19 +20,23 @@ public class FoodServiceImpl implements FoodService{
 	@Autowired
 	private FoodDAO foodDAO;
 	
+	
 	private static final String STARTERS_FOOD = "Starters";
-	private static final String MAINCOURSE_FOOD = "Main Course";
+	private static final String MAINCOURSE_FOOD = "Maincourse";
 	private static final String SALADS_FOOD = "Salads";
 	private static final String DESSERTS_FOOD = "Desserts";
 	private static final String SPECIAL_FOOD = "Special";
 	
-	/*@Override
 	public List<Food> getStartersFood(List<Food> listFood) {
 		List<Food> listStartersFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			if(listFood.get(i).getKindOfFood().equals(STARTERS_FOOD)) {
-				listStartersFood.add(listFood.get(i));
-			}
+			Set<Categories> listCate = listFood.get(i).getCategories();
+			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
+				Categories cate = (Categories) iterator.next(); 
+				if(cate.getName().equals(STARTERS_FOOD)) {
+					listStartersFood.add(listFood.get(i));
+				}
+	        }
 		}
 		return listStartersFood;
 	}
@@ -40,9 +46,13 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		List<Food> listMainCourseFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			if(listFood.get(i).getKindOfFood().equals(MAINCOURSE_FOOD)) {
-				listMainCourseFood.add(listFood.get(i));
-			}
+			Set<Categories> listCate = listFood.get(i).getCategories();
+			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
+				Categories cate = (Categories) iterator.next(); 
+				if(cate.getName().equals(MAINCOURSE_FOOD)) {
+					listMainCourseFood.add(listFood.get(i));
+				}
+	        }
 		}
 		return listMainCourseFood;
 	}
@@ -51,9 +61,13 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		List<Food> listSaladsFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			if(listFood.get(i).getKindOfFood().equals(SALADS_FOOD)) {
-				listSaladsFood.add(listFood.get(i));
-			}
+			Set<Categories> listCate = listFood.get(i).getCategories();
+			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
+				Categories cate = (Categories) iterator.next(); 
+				if(cate.getName().equals(SALADS_FOOD)) {
+					listSaladsFood.add(listFood.get(i));
+				}
+	        }
 		}
 		return listSaladsFood;
 	}
@@ -62,9 +76,13 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		List<Food> listDessertsFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			if(listFood.get(i).getKindOfFood().equals(DESSERTS_FOOD)) {
-				listDessertsFood.add(listFood.get(i));
-			}
+			Set<Categories> listCate = listFood.get(i).getCategories();
+			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
+				Categories cate = (Categories) iterator.next(); 
+				if(cate.getName().equals(DESSERTS_FOOD)) {
+					listDessertsFood.add(listFood.get(i));
+				}
+	        }
 		}
 		return listDessertsFood;
 	}
@@ -74,12 +92,16 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		List<Food> listSpecialFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			if(listFood.get(i).getDescription().startsWith(SPECIAL_FOOD)) {
-				listSpecialFood.add(listFood.get(i));
-			}
+			Set<Categories> listCate = listFood.get(i).getCategories();
+			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
+				Categories cate = (Categories) iterator.next(); 
+				if(cate.getName().equals(SPECIAL_FOOD)) {
+					listSpecialFood.add(listFood.get(i));
+				}
+	        }
 		}
 		return listSpecialFood;
-	}*/
+	}
 	
 	@Override
 	public void addFood(Food food) {
@@ -110,6 +132,7 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		return foodDAO.getFoods();
 	}
+
 
 	
 	

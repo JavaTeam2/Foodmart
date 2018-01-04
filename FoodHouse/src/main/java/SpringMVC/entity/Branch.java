@@ -2,6 +2,8 @@ package SpringMVC.entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -31,8 +33,8 @@ public class Branch {
 	private int table_quantity;
 	private String image;
 	private String description;
-	private Set<Food> foods = new HashSet<Food>(0);
-	private Set<CostsIncurred> costsIncurred = new HashSet<CostsIncurred>(0);
+	private List<Food> foods = new ArrayList<Food>();
+	private List<CostsIncurred> costsIncurred = new ArrayList<CostsIncurred>();
 	public Branch() {
 		
 	}
@@ -126,22 +128,24 @@ public class Branch {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "branches_foods",joinColumns = {
 			@JoinColumn(name = "branch_id", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "food_id",
 			nullable = false, updatable = false) })
-	public Set<Food> getFoods() {
+
+	public List<Food> getFoods() {
 		return foods;
 	}
-	public void setFoods(Set<Food> foods) {
+	public void setFoods(List<Food> foods) {
 		this.foods = foods;
 	}
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-	public Set<CostsIncurred> getCostsIncurred() {
+	public List<CostsIncurred> getCostsIncurred() {
 		return costsIncurred;
 	}
-	public void setCostsIncurred(Set<CostsIncurred> costsIncurred) {
+	public void setCostsIncurred(List<CostsIncurred> costsIncurred) {
 		this.costsIncurred = costsIncurred;
 	}
 	
