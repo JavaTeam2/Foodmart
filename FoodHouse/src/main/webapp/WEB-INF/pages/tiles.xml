@@ -14,5 +14,11 @@
         <put-attribute name="css" value="css/admin-order.css"/>
         <put-attribute name="js" value="js/seller/order.js"/>
     </definition>
+    <!-- Reports views -->
+    <definition name="report-index" extends="seller-layout">
+        <put-attribute name="body" value="/WEB-INF/pages/seller/report.jsp"/>
+        <put-attribute name="css" value="css/admin-report.css"/>
+        <put-attribute name="js" value="js/seller/report.js"/>
+    </definition>
     
 </tiles-definitions>

@@ -11,6 +11,14 @@
             <span class="button-text">Lọc đơn hàng: [Hôm nay, theo ngày]</span>
             <i class="fa fa-filter button-icon" aria-hidden="true"></i>
         </button>
+        <button class="button button-pay">
+            <span class="button-text">Thanh toán</span>
+            <i class="fa fa-plus button-icon" aria-hidden="true"></i>
+        </button>
+        <button class="button button-delete">
+            <span class="button-text">Huỷ đơn hàng</span>
+            <i class="fa fa-plus button-icon" aria-hidden="true"></i>
+        </button>
     </div>
     <div class="row header">
         <div class="id">
@@ -60,7 +68,7 @@
         </c:forEach>
     </div>
     <div id="create-order">
-        <form class="form-create-order" action="seller/order/create" method="get">
+        <form class="form-create-order" action="seller/order/create" method="post">
         <div class="create-order-content">
             <div class="create-order-info">
                 <label for="customer_name" class="control">Tên khách hàng</label>

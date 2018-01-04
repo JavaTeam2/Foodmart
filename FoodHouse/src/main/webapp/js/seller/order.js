@@ -9,7 +9,9 @@
         this.changedEvent = function(){
             if ($(this.elementSelector) != null){
                 $(this.elementSelector).html("");
+                var totalPrice = 0;
                 for (var i=0; i < this.list_elements.length; i++){
+                    totalPrice += (this.list_elements[i])["price"] * (this.list_elements[i])["quantity"];
                     var html=""+
                         "<div class='order'>"+
                         "<input type='hidden' name='food' value='"+ (this.list_elements[i])["id"]  +"'/>"+
@@ -26,6 +28,7 @@
                         "</input>"
                     $(this.elementSelector).append(html);
                 }
+                $(this.elementSelector).append("<h3>Tổng: "+totalPrice+"</h3>");
             }
         };
         this.add = function(id, quantity, name, price){
@@ -54,6 +57,7 @@
         };
     }
 
+    /* Event binding */
     $(document).ready(function(){
         var orderDetailsModel = new OrderDetailsModel();
         orderDetailsModel.choose("#uglipop_popbox .order-list");
@@ -91,6 +95,22 @@
             event.preventBubble();
         });
 
+        var order_selecting = null;
+        $(".dashboard .table").on("click", ".row", function(event){
+            if (order_selecting!=null)
+                $(order_selecting).toggleClass("selected");
+            if (order_selecting != event.currentTarget) {
+                order_selecting = event.currentTarget;
+                $(order_selecting).toggleClass("selected");
+                $(order_selecting).parents(".table").removeClass("selected");
+                $(order_selecting).parents(".table").addClass("selected");
+            }else{
+                $(order_selecting).parents(".table").removeClass("selected");
+                order_selecting = null;
+            }
+        });
+
+        /* Validation setup */
         var validateSetup = function() {
             $("#uglipop_popbox form").validate({
                 rules: {

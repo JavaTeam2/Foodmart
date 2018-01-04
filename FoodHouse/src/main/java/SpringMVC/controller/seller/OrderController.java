@@ -44,7 +44,7 @@ public class OrderController {
         return "redirect:/seller";
     }
 
-    @RequestMapping(path="/seller/order/create", method = RequestMethod.GET)
+    @RequestMapping(path="/seller/order/create", method = RequestMethod.POST)
     public String create(Model model, Order order, @RequestParam("food")int[] food, @RequestParam("food_quantity")int[] food_quantity){
         order.setDate_time(new Date());
         order.setBranch_id(branchService.getBranch(1));

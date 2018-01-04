@@ -27,7 +27,7 @@
                     Quản lý đơn hàng
                     </div>
                 </a>
-                <a class="item" href="<c:url value='/seller'/>">
+                <a class="item" href="<c:url value='/seller/report'/>">
                     <div class="title">
                     Quản lý chi phí
                     </div>

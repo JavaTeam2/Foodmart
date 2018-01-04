@@ -262,3 +262,30 @@ button{
     margin-bottom: 0;
     overflow: hidden;
 }
+
+.dashboard .table .row.selected{
+    background-color: #1da1f2;
+    color: white;
+}
+.table .toolbar-operation .button-delete{
+    display: none;
+    width: 50%;
+    background-color: #f2460f;
+}
+.table .toolbar-operation .button-pay{
+    display: none;
+    width: 50%;
+    background-color: #2fd919;
+}
+.table.selected .toolbar-operation .button-delete{
+    display: flex;
+}
+.table.selected .toolbar-operation .button-pay{
+    display: flex;
+}
+.table.selected .toolbar-operation .button-add{
+    display: none;
+}
+.table.selected .toolbar-operation .button-filter{
+    display: none;
+}
