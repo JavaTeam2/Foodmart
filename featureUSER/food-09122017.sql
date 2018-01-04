@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `orders`(
 	`customer_province` nvarchar(64),
 	-- `order_detail_id` int unsigned NOT NULL,
     `total_money` double unsigned NOT NULL,
-    `date_time` date NOT NULL, 
+    `date_time` datetime NOT NULL, 
     `status` nvarchar(64) COLLATE utf8_bin NOT NULL,
     `note` nvarchar(1024) COLLATE utf8_bin,
     PRIMARY KEY(`id`),

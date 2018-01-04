@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -137,6 +139,7 @@ public class Order {
 	public void setTotal_money(double total_money) {
 		this.total_money = total_money;
 	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "date_time", nullable = false)
 	public Date getDate_time() {
 		return (Date) date_time;
