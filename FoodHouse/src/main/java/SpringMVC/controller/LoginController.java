@@ -45,7 +45,7 @@ public class LoginController {
  
    @RequestMapping(value = "/admin", method = RequestMethod.GET)
    public String adminPage(Model model) {
-       return "adminPage";
+       return "ad_index";
    }
  
    @RequestMapping(value = "/login", method = RequestMethod.GET)

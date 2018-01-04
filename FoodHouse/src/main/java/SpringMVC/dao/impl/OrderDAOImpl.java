@@ -18,13 +18,12 @@ public class OrderDAOImpl implements OrderDAO{
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
 	public void addOrder(Order order) {
 		// TODO Auto-generated method stub
 		getCurrentSession().save(order);
 	}
 
-	@Override
+	
 	public void updateOrder(Order order) {
 		// TODO Auto-generated method stub
 		Order orderToUpdate = getOrder(order.getId());
@@ -43,14 +42,14 @@ public class OrderDAOImpl implements OrderDAO{
 		getCurrentSession().update(orderToUpdate);
 	}
 
-	@Override
+	
 	public Order getOrder(int id) {
 		// TODO Auto-generated method stub
-		Order order = getCurrentSession().get(Order.class, id);
+		Order order = (Order) getCurrentSession().get(Order.class, id);
 		return order;
 	}
 
-	@Override
+	
 	public void deleteOrder(int id) {
 		// TODO Auto-generated method stub
 		Order order = getOrder(id);
@@ -60,7 +59,6 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Order> getOrders() {
 		// TODO Auto-generated method stub
 		return getCurrentSession().createQuery("Select e from " + Order.class.getName() + " e").list();
