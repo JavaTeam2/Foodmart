@@ -68,6 +68,33 @@
                 content: 'create-order'
             });
         });
+        $("button.button-pay").on("click", function() {
+            uglipop({
+                class: 'complete-order',
+                source: 'div',
+                content: 'complete-order'
+            });
+            $.ajax({url: "seller/order/get", dataType: "json", data: { id: $(".table .row.selected .id").attr("data-id") },
+                success: function(data){
+                    if (data["status"] == "PAID")
+                        $("#uglipop_popbox .completer-order-btn").css("display", "none");
+                    $("#uglipop_popbox .customer-name.value").html(data["customer_name"]);
+                    $("#uglipop_popbox .order-type.value").html(data["type"]);
+                    $("#uglipop_popbox .order-date.value").html(new Date(data["date_time"]).toLocaleString());
+                    $("#uglipop_popbox .total-price.value").html(data["total_money"]+"$");
+                    var html="";
+                    for (var i=0; i < data["listUserDetails"].length; i++){
+                        var orderDetail = data["listUserDetails"][i];
+                        html+="<div class='item'>"+
+                            "<div class='name'>"+orderDetail["food_id"]["name"]+"</div>"+
+                        "<div class='quantity'>"+orderDetail["quantity"]+"</div>"+
+                            "<div class='price'>"+orderDetail["food_id"]["price"]+"</div>"+
+                           "</div>";
+                        $("#uglipop_popbox .order-details.value").html(html);
+                    }
+                    $("#uglipop_popbox .id-get").val(data["id"]);
+                }});
+        });
         $("#uglipop_popbox").on("click", ".create-order-item .item", function(event){
             var element = event.currentTarget;
             if (!$(element).hasClass("selected")) {
@@ -115,18 +142,8 @@
             $("#uglipop_popbox form").validate({
                 rules: {
                     customer_name: "required",
-                    customer_phone: {
-                        required: true,
-                        number: true
-                    },
-                    customer_email: {
-                        required: true,
-                        email: true
-                    },
-                    customer_address: "required",
-                    customer_city: "required",
-                    customer_province: "required",
-                    note: "required"
+                    type: "required",
+                    food: "required"
                 }
             });
         };

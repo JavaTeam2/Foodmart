@@ -16,7 +16,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    justify-content: center;
     transition: width 0.1s ease-out;
 }
 .dashboard .toolbar{
@@ -37,6 +36,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    margin: auto;
+    width: 100%;
 }
 .list .item{
     height: 50px;
@@ -44,6 +45,29 @@ body{
     display: flex;
     transition: background-color 0.1s ease-out;
     cursor: default;
+}
+.list .branch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.list .branch .img-wrapper{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.list .branch img{
+    width: 100%;
+}
+.list .list-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 58px;
+    color: #002941;
+    letter-spacing: 1px;
+
 }
 .list a{
     text-decoration: none;

@@ -20,5 +20,11 @@
         <put-attribute name="css" value="css/admin-report.css"/>
         <put-attribute name="js" value="js/seller/report.js"/>
     </definition>
+    <!-- Reports monthly views -->
+    <definition name="report-monthly" extends="seller-layout">
+        <put-attribute name="body" value="/WEB-INF/pages/seller/report_monthly.jsp"/>
+        <put-attribute name="css" value="css/admin-report-monthly.css"/>
+        <put-attribute name="js" value="js/seller/report-monthly.js"/>
+    </definition>
     
 </tiles-definitions>

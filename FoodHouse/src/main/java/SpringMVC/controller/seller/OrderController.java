@@ -1,6 +1,8 @@
 package SpringMVC.controller.seller;
 
 
+import SpringMVC.dao.SellerDAO;
+import SpringMVC.entity.Branch;
 import SpringMVC.entity.Food;
 import SpringMVC.entity.Order;
 import SpringMVC.entity.OrderDetail;
@@ -13,10 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -31,23 +32,29 @@ public class OrderController {
     private OrderDetailService orderDetailService;
     @Autowired
     private BranchService branchService;
+    @Autowired
+    private SellerDAO sellerDAO;
+    @ModelAttribute
+    public void addBranch(Model model, Principal principal){
+        Branch currentBranch = sellerDAO.getSellerByUsername(principal.getName()).getBranch();
+        model.addAttribute("branch", currentBranch);
+    }
     @RequestMapping(path="/seller")
-    public String index(Model model){
-        model.addAttribute("orders", orderService.getOrders());
-        model.addAttribute("foods", branchService.getBranchHasFood(1).getFoods());
+    public String index(Model model, Principal principal){
+        Branch currentBranch = sellerDAO.getSellerByUsername(principal.getName()).getBranch();
+        model.addAttribute("orders", currentBranch.getOrders());
+        model.addAttribute("foods", currentBranch.getFoods());
         return "seller-index";
     }
 
-    @RequestMapping(path="/seller/test")
-    public String index(Food food, Model model){
-        int a = 5;
-        return "redirect:/seller";
-    }
 
     @RequestMapping(path="/seller/order/create", method = RequestMethod.POST)
-    public String create(Model model, Order order, @RequestParam("food")int[] food, @RequestParam("food_quantity")int[] food_quantity){
+    public String create(Model model, Order order, @RequestParam("food")int[] food, @RequestParam("food_quantity")int[] food_quantity, Principal principal){
+        Branch currentBranch = sellerDAO.getSellerByUsername(principal.getName()).getBranch();
+        if ((food == null) || (food.length == 0))
+            return "redirect:/seller";
         order.setDate_time(new Date());
-        order.setBranch_id(branchService.getBranch(1));
+        order.setBranch_id(currentBranch);
         order.setStatus("CHECKING");
         order.setTotal_money(0);
         orderService.addOrder(order);
@@ -63,6 +70,18 @@ public class OrderController {
             orderDetailService.addOrderDetail(orderDetail);
         }
         order.setTotal_money(toltalMoney);
+        orderService.updateOrder(order);
+        return "redirect:/seller";
+    }
+
+    @RequestMapping(value = "/seller/order/get", method = RequestMethod.GET)
+    public @ResponseBody Order getOrder(@RequestParam int id){
+        return orderService.getOrder(id);
+    }
+    @RequestMapping(value = "/seller/order/complete", method = RequestMethod.POST)
+    public String completeOrder(@RequestParam int id){
+        Order order =  orderService.getOrder(id);
+        order.setStatus("PAID");
         orderService.updateOrder(order);
         return "redirect:/seller";
     }

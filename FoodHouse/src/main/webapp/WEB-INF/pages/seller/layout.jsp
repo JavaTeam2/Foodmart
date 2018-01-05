@@ -22,6 +22,12 @@
             <div class="close">
             </div>
             <div class="list">
+                <div class="branch">
+                    <div class="img-wrapper">
+                    <img src="${branch.image}"/>
+                    </div>
+                    <div class="list-title">Chi nhánh <c:out value="${branch.id}"/></div>
+                </div>
                 <a class="item" href="<c:url value='/seller'/>">
                     <div class="title">
                     Quản lý đơn hàng
@@ -30,6 +36,11 @@
                 <a class="item" href="<c:url value='/seller/report'/>">
                     <div class="title">
                     Quản lý chi phí
+                    </div>
+                </a>
+                <a class="item" href="<c:url value='/logout'/>">
+                    <div class="title">
+                        Đăng xuất
                     </div>
                 </a>
             </div>

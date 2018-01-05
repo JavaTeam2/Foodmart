@@ -1,5 +1,8 @@
 package SpringMVC.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "foods",
 		uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
-public class Food {
+public class Food implements Serializable {
 	private int id;
 	private String name;
 	private double price;
@@ -75,7 +78,7 @@ public class Food {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy ="foods")
 	public Set<Branch> getBranches() {
 		return branches;
@@ -83,6 +86,7 @@ public class Food {
 	public void setBranches(Set<Branch> branches) {
 		this.branches = branches;
 	}
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy ="foods")
 	public Set<Categories> getCategories() {
 		return categories;

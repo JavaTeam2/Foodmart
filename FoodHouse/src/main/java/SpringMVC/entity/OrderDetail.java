@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "order_details")
-public class OrderDetail {
+public class OrderDetail implements Serializable{
 	private int id;
 	private Order order_id;
 	private Food food_id;
@@ -44,6 +47,7 @@ public class OrderDetail {
 		this.id = id;
 	}
 	//@Column(name = "order_id", nullable = false)
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
 	public Order getOrder_id() {

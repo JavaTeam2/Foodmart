@@ -43,7 +43,7 @@
     <div class="body">
         <c:forEach var="order" items="${orders}" varStatus="status">
             <div class="row">
-                <div class="id">
+                <div class="id" data-id="<c:out value='${order.id}'/>">
                     <c:out value="${status.index+1}"/>
                 </div>
                 <div class="customer-name">
@@ -71,6 +71,15 @@
         <form class="form-create-order" action="seller/order/create" method="post">
         <div class="create-order-content">
             <div class="create-order-info">
+                <label class="control" style="margin-bottom: 5px;">Loại đơn hàng</label>
+                <div>
+                    <input id="mangve" type="radio" name="type" value="Mang về" checked/>
+                    <label for="mangve">Mang về</label>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="phucvutaiquan" type="radio" name="type" value="Phục vụ tài quán"/>
+                    <label for="phucvutaiquan">Phục vụ tại quán</label>
+                </div>
                 <label for="customer_name" class="control">Tên khách hàng</label>
                 <input type="text" id="customer_name" name="customer_name" class="control"/>
                 <label for="customer_phone" class="control">Số điện thoại</label>
@@ -105,6 +114,46 @@
             </div>
         </div>
         <button>Tạo</button>
+        </form>
+    </div>
+    <div id="complete-order">
+        <form action="<c:url value='seller/order/complete'/>" method="post">
+        <div class="complete-order-pay">
+            <div class="customer-name title">Tên khách hàng</div>
+            <div class="customer-name value">Trí</div>
+            <div class="order-type title">Loại đơn hàng</div>
+            <div class="order-type value">Mang về</div>
+            <div class="order-date title">Thời gian đặt hàng</div>
+            <div class="order-date value">2-2-2</div>
+            <div class="order-details title">Chi tiết đơn hàng</div>
+            <div class="order-details value">
+                <div class="item">
+                    <div class="name">Hai san</div>
+                    <div class="quantity">5</div>
+                    <div class="price">4000</div>
+                </div><div class="item">
+                    <div class="name">Hai san</div>
+                    <div class="quantity">5</div>
+                    <div class="price">4000</div>
+                </div><div class="item">
+                    <div class="name">Hai san</div>
+                    <div class="quantity">5</div>
+                    <div class="price">4000</div>
+                </div><div class="item">
+                    <div class="name">Hai san</div>
+                    <div class="quantity">5</div>
+                    <div class="price">4000</div>
+                </div><div class="item">
+                    <div class="name">Hai san</div>
+                    <div class="quantity">5</div>
+                    <div class="price">4000</div>
+                </div>
+            </div>
+            <div class="total-price value">150000$</div>
+            <div class="total-price"></div>
+        </div>
+        <input type="hidden" class="id-get" name="id" value="" required/>
+        <button class="completer-order-btn">Thanh toán</button>
         </form>
     </div>
 </div>

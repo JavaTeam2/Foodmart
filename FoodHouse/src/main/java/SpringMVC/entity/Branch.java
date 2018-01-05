@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
@@ -34,8 +36,9 @@ public class Branch {
 	private int table_quantity;
 	private String image;
 	private String description;
-	private List<Food> foods = new ArrayList<Food>();
-	private List<CostsIncurred> costsIncurred = new ArrayList<CostsIncurred>();
+	private Set<Food> foods = new HashSet<Food>();
+	private Set<CostsIncurred> costsIncurred = new HashSet<CostsIncurred>();
+	private Set<Order> orders;
 	public Branch() {
 		
 	}
@@ -136,19 +139,25 @@ public class Branch {
 			inverseJoinColumns = { @JoinColumn(name = "food_id",
 			nullable = false, updatable = false) })
 
-	public List<Food> getFoods() {
+	public Set<Food> getFoods() {
 		return foods;
 	}
-	public void setFoods(List<Food> foods) {
+	public void setFoods(Set<Food> foods) {
 		this.foods = foods;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-	public List<CostsIncurred> getCostsIncurred() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "branch_id")
+	public Set<CostsIncurred> getCostsIncurred() {
 		return costsIncurred;
 	}
-	public void setCostsIncurred(List<CostsIncurred> costsIncurred) {
+	public void setCostsIncurred(Set<CostsIncurred> costsIncurred) {
 		this.costsIncurred = costsIncurred;
 	}
-	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "branch_id")
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	
 }

@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `orders`(
     `date_time` datetime NOT NULL, 
     `status` nvarchar(64) COLLATE utf8_bin NOT NULL,
     `note` nvarchar(1024) COLLATE utf8_bin,
+    `type` nvarchar(1024) COLLATE utf8_bin,
     PRIMARY KEY(`id`),
     CONSTRAINT `fk_orders_users` FOREIGN KEY (`customer_id`) REFERENCES `users`(`id`),
     CONSTRAINT `fk_orders_branches` FOREIGN KEY (`branch_id`) REFERENCES `branches`(`id`)
@@ -127,4 +128,14 @@ CREATE TABLE IF NOT EXISTS `categories_foods`(
 	FOREIGN KEY(`cat_id`) REFERENCES `categories`(`id`),
 	FOREIGN KEY(`food_id`) REFERENCES `foods`(`id`),
 	UNIQUE (`cat_id`, `food_id`)
+);
+
+CREATE TABLE IF NOT EXISTS `sellers`(
+	`id` int unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` int unsigned NOT NULL,
+	`branch_id` int unsigned NOT NULL,
+	PRIMARY KEY(`id`),
+	FOREIGN KEY(`user_id`) REFERENCES `users`(`id`),
+	FOREIGN KEY(`branch_id`) REFERENCES `branches`(`id`),
+	UNIQUE (`user_id`)
 );

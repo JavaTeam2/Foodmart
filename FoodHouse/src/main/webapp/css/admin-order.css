@@ -109,7 +109,7 @@ button{
         display: inline-block;
     }
 }
-#create-order{
+#create-order, #complete-order{
     display: none;
 }
 .create-order{
@@ -288,4 +288,77 @@ button{
 }
 .table.selected .toolbar-operation .button-filter{
     display: none;
+}
+
+.complete-order{
+    background-color: white;
+    border-radius: 5px;
+    width: 450px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+}
+.complete-order button{
+    height: 50px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: background-color 0.1s ease-out;
+    background-color: #dddddd;
+}
+.complete-order button:hover{
+    background-color: #ff7e00;
+    color: white;
+}
+.complete-order-pay{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 20px;
+}
+.complete-order-pay .value{
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+}
+.complete-order-pay .title{
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    color: #202020;
+}
+.complete-order-pay .order-details.title{
+    margin-bottom: 5px;
+}
+.complete-order-pay .order-details.value{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+    overflow-y: auto;
+}
+.complete-order-pay .order-details.value .item{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    min-height: 15px;
+}
+.complete-order-pay .order-details.value .name{
+    width: 70%;
+    flex-wrap: wrap;
+}
+.complete-order-pay .order-details.value .quantity{
+    width: 15%;
+}
+.complete-order-pay .order-details.value .price{
+     width: 15%;
+ }
+.complete-order-pay .total-price.value{
+    align-self: flex-end;
+    margin-right: 30px;
+    font-weight: bold;
+}
+.complete-order form{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    margin-bottom: 0;
 }

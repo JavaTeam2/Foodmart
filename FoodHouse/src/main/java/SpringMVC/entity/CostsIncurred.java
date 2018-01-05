@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -21,6 +23,7 @@ public class CostsIncurred {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date", nullable = false)
 	public Date getDate() {
 		return date;

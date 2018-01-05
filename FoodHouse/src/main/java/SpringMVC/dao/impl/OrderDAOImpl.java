@@ -47,7 +47,7 @@ public class OrderDAOImpl implements OrderDAO{
 	
 	public Order getOrder(int id) {
 		// TODO Auto-generated method stub
-		Order order = (Order) getCurrentSession().get(Order.class, id);
+		Order order = (Order) getCurrentSession().createQuery("SELECT e from "+ Order.class.getName() + " e where e.id="+id).uniqueResult();
 		return order;
 	}
 

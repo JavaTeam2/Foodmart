@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 
         // Bộ phận bán hàng
-        http.authorizeRequests().antMatchers("/seller").access("hasRole('ROLE_SELLER')");
+        http.authorizeRequests().antMatchers("/seller", "/seller/**").access("hasRole('ROLE_SELLER')");
  
         // When the user has logged in as XX.
         // But access a page that requires role YY,

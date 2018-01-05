@@ -1,7 +1,11 @@
 package SpringMVC.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +27,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable{
 	private int id;
 	private User customer_id;
 	private Branch branch_id;
@@ -33,11 +37,12 @@ public class Order {
 	private String customer_address;
 	private String customer_city;
 	private String customer_province;
+	private String type;
 	private double total_money;
 	private Date date_time;
 	private String status;
 	private String note;
-	private List<OrderDetail> listUserDetails = new ArrayList<OrderDetail>();
+	private Set<OrderDetail> listUserDetails = new HashSet<OrderDetail>();
 	
 	
 	
@@ -63,6 +68,7 @@ public class Order {
 		this.date_time = date_time;
 		this.status = status;
 		this.note = note;
+		this.type = "Mang về"; /* Mang về - Phục vụ tài quán - Giao hàng tận nhà*/
 	}
 
 	@Id
@@ -74,6 +80,7 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id")
 	public User getCustomer_id() {
@@ -82,6 +89,7 @@ public class Order {
 	public void setCustomer_id(User customer_id) {
 		this.customer_id = customer_id;
 	}
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "branch_id")
 	public Branch getBranch_id() {
@@ -141,6 +149,7 @@ public class Order {
 	}
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "date_time", nullable = false)
+	@JsonSerialize(using=DateSerializer.class)
 	public Date getDate_time() {
 		return (Date) date_time;
 	}
@@ -161,11 +170,19 @@ public class Order {
 	public void setNote(String note) {
 		this.note = note;
 	}
+	@Column(name = "type", length = 1024)
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order_id")
-	public List<OrderDetail> getListUserDetails() {
+	public Set<OrderDetail> getListUserDetails() {
 		return listUserDetails;
 	}
-	public void setListUserDetails(List<OrderDetail> listUserDetails) {
+	public void setListUserDetails(Set<OrderDetail> listUserDetails) {
 		this.listUserDetails = listUserDetails;
 	}
 	
@@ -211,11 +228,10 @@ public class Order {
     
     public void updateQuantity(Order order) {
         if (order != null) {
-			List<OrderDetail> lines = order.getListUserDetails();
-			System.out.println("Danh sach mon an da order: " + lines.size());
-            for (int i = 0; i < lines.size(); i++) {
-            	System.out.println("Ten thuc an la: " + lines.get(i).getFood_id().getName());
-                this.updateProduct(lines.get(i).getFood_id().getId(), lines.get(i).getQuantity());
+			Set<OrderDetail> lines = order.getListUserDetails();
+            for (OrderDetail item: lines) {
+            	System.out.println("Ten thuc an la: " + item.getFood_id().getName());
+                this.updateProduct(item.getFood_id().getId(), item.getQuantity());
             }
         }
  

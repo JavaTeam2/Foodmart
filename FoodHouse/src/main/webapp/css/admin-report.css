@@ -3,6 +3,10 @@
     font-weight: 300;
     margin-left: 10px;
 }
+
+.header-page .sublink{
+    font-size: 0.9rem;
+}
 button{
     border: none;
 }
@@ -273,5 +277,8 @@ button{
     width: 45%;
 }
 .form-cost #cost{
-    width: 45%;
+    width: 30%;
+}
+.form-cost #date{
+    width: 15%;
 }

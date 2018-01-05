@@ -1,5 +1,7 @@
 package SpringMVC.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -22,7 +24,7 @@ public class UserRole implements Serializable {
 	private int userRoleID;
 	private User user;
 	private String role;
-	
+
 	public UserRole() {
 		
 	}

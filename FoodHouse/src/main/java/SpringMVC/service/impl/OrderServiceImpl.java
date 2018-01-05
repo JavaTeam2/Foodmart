@@ -3,6 +3,7 @@ package SpringMVC.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import SpringMVC.entity.OrderDetail;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,8 +59,8 @@ public class OrderServiceImpl implements OrderService{
 	public void calTotalCost(Order order) {
 		// TODO Auto-generated method stub
 		double total = 0;
-		for(int i = 0; i < order.getListUserDetails().size(); i++) {
-			total = total + order.getListUserDetails().get(i).getPrice();
+		for(OrderDetail orderDetail: order.getListUserDetails()) {
+			total = total + orderDetail.getPrice();
 		}
 		order.setTotal_money(total);
 	}

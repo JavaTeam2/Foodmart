@@ -82,7 +82,7 @@ public class LoginController {
  
        // After user login successfully.
        String userName = principal.getName();
- 
+
        System.out.println("User Name: "+ userName);
  
        return "gallery";

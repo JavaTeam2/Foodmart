@@ -3,91 +3,21 @@
     font-weight: 300;
     margin-left: 10px;
 }
-
 .header-page .sublink{
     font-size: 0.9rem;
 }
-button{
-    border: none;
-}
-.table{
+.content{
     display: flex;
     flex-direction: column;
-    width: calc(100% - 20px);
-    margin: 10px;
-    height: calc(100% - 85px);
 }
-.table .toolbar-operation{
-    display: flex;
-    flex-direction: row;
-}
-.table .toolbar-operation .button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:40px;
-    color: white;
-}
-.table .toolbar-operation .button-add{
-    width: 50%;
-    background-color: #1da1f2;
-}
-.table .toolbar-operation .button-filter{
-    width: 50%;
-    background-color: gray;
+button{
+    border: none;
 }
 .button-icon{
     display: none;
 }
 .button-text{
     font-size: 1rem;
-}
-
-.table .create-order-form{
-    max-height: 0;
-    overflow: hidden;
-}
-.table .create-order-form.show{
-    max-height: none;
-}
-
-.table .body{
-    height: 500px;
-    overflow-y: scroll;
-    flex-grow: 1;
-}
-.table .row{
-    display: flex;
-    flex-direction: row;
-    padding: 0 5px;
-}
-.table .row.header{
-    background-color: #fafafa;
-    height: 40px;
-    align-items: center;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    border-bottom: solid 2px #eaeaea;
-}
-.table .row:not(.header):nth-child(odd){
-    background-color: #f5fbff;
-}
-.table .row div{
-    display: flex;
-    flex-wrap: wrap;
-    word-break: break-all;
-}
-.table .row .id{
-    width: 10%;
-}
-.table .row .cause{
-    width: 40%;
-}
-.table .row .cost{
-    width: 20%;
-}
-.table .row .date{
-    width: 30%;
 }
 @media (max-width: 575px){
     .table .row{
@@ -261,8 +191,9 @@ button{
     overflow: hidden;
 }
 .form-cost{
-    margin-bottom: 0;
+    margin: auto;
     display: flex;
+    flex-direction: column;
 }
 .form-cost label.error{
     display: none !important;
@@ -270,15 +201,31 @@ button{
 .form-cost input.error{
     border: solid 1px red;
 }
-.form-cost #submit{
-    width: 10%;
+.form-cost .cost{
+    width: 100%;
 }
-.form-cost #cause{
-    width: 45%;
+
+
+.table{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
-.form-cost #cost{
-    width: 30%;
+.table .row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
 }
-.form-cost #date{
-    width: 15%;
+.table .row.title{
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+.table .row input{
+    height: 30px;
+    width: 100%;
+    padding: 5px;
+}
+.form-wrapper{
+    display: flex;
+    flex-grow: 1;
 }

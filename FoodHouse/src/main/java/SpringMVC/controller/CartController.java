@@ -111,15 +111,15 @@ public class CartController {
 		      else {
 		    	  //myCart = orderService.getOrderByUsername(userService.getUserByUsername(username));
 		    	  System.out.println("cart form id shopping cart: " + cartForm.getCustomer_name());
-		    	  for(int i = 0; i < cartForm.getListUserDetails().size(); i++) {
-		    		  if(cartForm.getListUserDetails().get(i).getQuantity() == 0) {
-		    			  orderDetailService.deleteOrderDetails(cartForm.getListUserDetails().get(i).getId());
+		    	  for(OrderDetail orderDetail: cartForm.getListUserDetails()) {
+		    		  if(orderDetail.getQuantity() == 0) {
+		    			  orderDetailService.deleteOrderDetails(orderDetail.getId());
 		    		  }
 		    		  else {
 		    			  //cartForm.getListUserDetails().get(i).setPrice(cartForm.getListUserDetails().get(i).getQuantity() * cartForm.getListUserDetails().get(i).getFood_id().getPrice());
 		    			  //System.out.println("gia cap nhat: " + cartForm.getListUserDetails().get(i).getQuantity() * cartForm.getListUserDetails().get(i).getFood_id().getPrice());
-		    			  cartForm.getListUserDetails().get(i).setPrice(cartForm.getListUserDetails().get(i).getFood_id().getPrice());
-		    			  orderDetailService.updateOrderDetail(cartForm.getListUserDetails().get(i));
+						  orderDetail.setPrice(orderDetail.getFood_id().getPrice());
+		    			  orderDetailService.updateOrderDetail(orderDetail);
 		    			  orderService.calTotalCost(cartForm);
 		    		  }
 		    	  }
