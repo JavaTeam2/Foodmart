@@ -19,6 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- css -->
 <link rel="stylesheet" href="css/style.css" type="text/css"/>
 <link rel="stylesheet" href="css/checkout.css" type="text/css"/>
+<link href="css/shopping-item.css" rel="stylesheet">
     <!-- Custom CSS -->
 
 <!--// css -->
@@ -106,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							 <ul class="nav navbar-nav link-effect-4">
-							<li><a href="home" data-hover="Home">Home</a> </li>
+							<li><a href="${pageContext.request.contextPath}/home" data-hover="Home">Home</a> </li>
 								<li><a href="about" data-hover="About">About </a> </li>
 								<li><a href="gallery"  data-hover="Gallery">Gallery</a></li>
 							  	<li><a href="our_branches" data-hover="OurBranches">Our Branches</a></li>
@@ -115,19 +116,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div><!-- /.navbar-collapse -->
 						</div>
 			
-					<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+					
 					<div class="header-left shopping-item" style="margin-top: 10px;">
 						<!-- <ul>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 							<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
 						</ul> -->
 						
-    						<a href="cart.html">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
+    						<a href="shoppingCart">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
     					
 						<!-- <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a> -->
 						
 					</div>
-			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
 			<div class="header-left">
 				<ul>
@@ -140,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 			<div class="w3-agile-main-heading">
-				<h2>Cart</h2>
+				<h2>Checkout</h2>
 			</div>
 		</div>
 		<!-- //agileinfo-dot -->
@@ -162,44 +162,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
+                       <c:forEach items="${listSpecial }" var="food">
+                        	<div class="thubmnail-recent">
+	                            <img src="${food.image }" class="recent-thumb" alt="">
+	                            <h2><a href="single-product.html">${food.name }</a></h2>
+	                            <div class="product-sidebar-price">
+	                                <ins>$${food.price }</ins> <del>$${food.price_promotion }</del>
+	                            </div>                             
+                        	</div>
+                        </c:forEach>
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
                         <ul>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
-                            <li><a href="single-product.html">Sony Smart TV - 2015</a></li>
+                            <c:forEach items="${listSpecial }" var="food">
+                        		<li><a href="#">${food.name }</a></li>
+                        	</c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -317,7 +296,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<form:input type="hidden" path="customer_id.id"/>
 												<form:input type="hidden" path="customer_province"/>
 												<form:input type="hidden" path="total_money"/>
-												<form:input type="text" path="date_time"/>
+												<form:input type="hidden" path="date_time"/>
 												<form:input type="hidden" path="status"/>
 												<%-- <form:input type="" path="listUserDetails"/> --%>
 												<c:forEach items="${cartForm.listUserDetails }" var = "cartLine" varStatus="i">
@@ -401,16 +380,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <tbody>
                                             <tr class="cart_item">
                                                 <td class="product-name">
-                                                    Ship Your Idea <strong class="product-quantity">× 1</strong> </td>
+                                                    Ship cost <strong class="product-quantity">x 1</strong> </td>
                                                 <td class="product-total">
-                                                    <span class="amount">$15.00</span> </td>
+                                                    <span class="amount">$0.0</span> </td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
 
                                             <tr class="cart-subtotal">
                                                 <th>Cart Subtotal</th>
-                                                <td><span class="amount">$15.00</span>
+                                                <td><span class="amount">$${cartForm.total_money }</span>
                                                 </td>
                                             </tr>
 
@@ -426,7 +405,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                             <tr class="order-total">
                                                 <th>Order Total</th>
-                                                <td><strong><span class="amount">$15.00</span></strong> </td>
+                                                <td><strong><span class="amount">$${cartForm.total_money }</span></strong> </td>
                                             </tr>
 
                                         </tfoot>

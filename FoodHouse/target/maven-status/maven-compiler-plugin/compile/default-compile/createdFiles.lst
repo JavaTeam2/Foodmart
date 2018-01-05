@@ -7,6 +7,7 @@ SpringMVC\controller\HelloWorldController.class
 SpringMVC\config\WebMvcConfig.class
 SpringMVC\service\impl\UserRoleServiceImpl.class
 SpringMVC\controller\GalleryController.class
+SpringMVC\controller\seller\OrderController.class
 SpringMVC\service\impl\CostsIncurredServiceImpl.class
 SpringMVC\dao\impl\FoodDAOImpl.class
 SpringMVC\dao\impl\UserDAOImpl.class
@@ -17,6 +18,7 @@ SpringMVC\config\SecurityConfig.class
 SpringMVC\controller\OurBranchesController.class
 SpringMVC\dao\OrderDAO.class
 SpringMVC\config\SpringWebAppInitializer.class
+SpringMVC\controller\seller\ReportController.class
 SpringMVC\entity\OrderDetail.class
 SpringMVC\controller\LoginController.class
 SpringMVC\controller\OrderHistoryController.class

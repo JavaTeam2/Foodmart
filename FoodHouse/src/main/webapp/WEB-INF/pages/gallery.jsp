@@ -128,27 +128,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							  </ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
-			<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+			
 					<div class="header-left shopping-item" style="margin-top: 10px;">
 						<!-- <ul>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 							<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
 						</ul> -->
 						
-    						<a href="cart.html">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
+    						<a href="shoppingCart">Cart - <span class="cart-amunt">$${cartForm.total_money }</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${count }</span></a>
     					
 						<!-- <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a> -->
 						
 					</div>
-			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+			
+			<%-- <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
 			<div class="header-left">
 				<ul>
 					<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 					<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
 				</ul>
 			</div>
-			</sec:authorize>
+			</sec:authorize> --%>
 					<div class="clearfix"></div>	
 				</div>
 			</div>

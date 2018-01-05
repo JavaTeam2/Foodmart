@@ -2,6 +2,7 @@ package SpringMVC.controller;
 
 import java.security.Principal;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,48 @@ public class CartController {
 	
 	@Autowired
 	private OrderDetailService orderDetailService;
+	
+	@RequestMapping(value = { "/deleteFood" }, method = RequestMethod.POST)
+	public String deleteFood(HttpServletRequest request, Model model, 
+							@RequestParam(value = "code", defaultValue = "") String code,
+							@ModelAttribute("cartForm") Order cartForm) {
+		int id  = -1;
+		System.out.println("cartForm: " + cartForm.getId());
+	       Food food = null;
+	       if (code != null && code.length() > 0) {
+	    	  id  = Integer.parseInt(code);
+	    	   food = foodService.getFood(id);
+	    	   System.out.println("name: " + food.getName());
+	       }
+	       if (food != null) {
+	    	   
+ 			   //cartForm.getListUserDetails().remove(i);
+ 			   for(int i = 0; i < cartForm.getListUserDetails().size(); i++) {
+ 				   if(cartForm.getListUserDetails().get(i).getFood_id().getId() == food.getId()) {
+ 					   cartForm.getListUserDetails().remove(i);
+ 					  orderDetailService.deleteOrderDetails(cartForm.getListUserDetails().get(i).getId());
+ 				   }
+ 			   }
+	    	   
+ 			   double total = 0;
+ 			   for(int m = 0; m < cartForm.getListUserDetails().size(); m++) {
+	   				total = total + cartForm.getListUserDetails().get(m).getPrice();
+ 			   }
+
+	   			  cartForm.setTotal_money(total);
+	   			  orderService.updateOrder(cartForm);
+	       }
+		return "redirect:/shoppingCart";
+	}
+	
+	/*@RequestMapping(value = { "/userDeleteFood" }, method = RequestMethod.POST)
+	public String userDeleteFood(HttpServletRequest request, Model model, 
+			@RequestParam(value = "code", defaultValue = "") String code,
+			@ModelAttribute("cartForm") Order cartForm) {
+		
+		return "redirect:/shoppingCart";
+	}*/
+	
 	@RequestMapping({ "/buyProduct" })
 	   public String listProductHandler(HttpServletRequest request, Model model, //
 	           @RequestParam(value = "code", defaultValue = "") String code) {
@@ -59,6 +102,11 @@ public class CartController {
 	           //System.out.println("id order:" + order.getId());
 	           System.out.println("loa loa loa");
 	           order.addFood(food, 1);
+	           double total = 0;
+	   			  for(int m = 0; m < order.getListUserDetails().size(); m++) {
+	   					total = total + order.getListUserDetails().get(m).getPrice();
+	   			  }
+	   			order.setTotal_money(total);
 	           System.out.println("loa loa loa");
 	           //orderDetailService.addOrderDetail(orderDetail);
 
@@ -72,6 +120,11 @@ public class CartController {
 	   @RequestMapping(value = { "/shoppingCart" }, method = RequestMethod.GET)
 	   public String shoppingCartHandler(HttpServletRequest request, Model model) {
 		   //model.addAttribute("cartForm", new Order());
+		   List<Food> listFood = foodService.getFoods();
+			List<Food> listSpecial = new ArrayList<Food>();
+			listSpecial = foodService.getSpecialFood(listFood);			
+			model.addAttribute("listSpecial", listSpecial);
+			
 		   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		      String username = auth.getName();
 		      Order myCart = null;
@@ -90,7 +143,7 @@ public class CartController {
 		    	  }
 		      }
 		      
-
+		      model.addAttribute("username", username);
 	       return "cart";
 	   }
 	   
@@ -107,6 +160,13 @@ public class CartController {
 		      if(username.equals("anonymousUser")) {
 		    	  myCart = Utils.getOrderInSession(request);
 		    	  myCart.updateQuantity(cartForm);
+		    	  
+		    	  
+		    	  double total = 0;
+	   			  for(int m = 0; m < myCart.getListUserDetails().size(); m++) {
+	   					total = total + myCart.getListUserDetails().get(m).getPrice();
+	   			  }
+		    	  myCart.setTotal_money(total);
 		      }
 		      else {
 		    	  //myCart = orderService.getOrderByUsername(userService.getUserByUsername(username));
@@ -114,13 +174,31 @@ public class CartController {
 		    	  for(int i = 0; i < cartForm.getListUserDetails().size(); i++) {
 		    		  if(cartForm.getListUserDetails().get(i).getQuantity() == 0) {
 		    			  orderDetailService.deleteOrderDetails(cartForm.getListUserDetails().get(i).getId());
+		    			  cartForm.getListUserDetails().remove(i);
+		    			  
+		    			  double total = 0;
+			   			  for(int m = 0; m < cartForm.getListUserDetails().size(); m++) {
+			   					total = total + cartForm.getListUserDetails().get(m).getPrice();
+			   			  }
+
+			   			  cartForm.setTotal_money(total);
+			   			  orderService.updateOrder(cartForm);
 		    		  }
 		    		  else {
 		    			  //cartForm.getListUserDetails().get(i).setPrice(cartForm.getListUserDetails().get(i).getQuantity() * cartForm.getListUserDetails().get(i).getFood_id().getPrice());
 		    			  //System.out.println("gia cap nhat: " + cartForm.getListUserDetails().get(i).getQuantity() * cartForm.getListUserDetails().get(i).getFood_id().getPrice());
-		    			  cartForm.getListUserDetails().get(i).setPrice(cartForm.getListUserDetails().get(i).getFood_id().getPrice());
+		    			  Food food = foodService.getFood(cartForm.getListUserDetails().get(i).getFood_id().getId()); 
+		    			  cartForm.getListUserDetails().get(i).setPrice(food.getPrice() * cartForm.getListUserDetails().get(i).getQuantity());
 		    			  orderDetailService.updateOrderDetail(cartForm.getListUserDetails().get(i));
-		    			  orderService.calTotalCost(cartForm);
+		    			  
+		    			  ////
+		    			  double total = 0;
+			   			  for(int m = 0; m < cartForm.getListUserDetails().size(); m++) {
+			   					total = total + cartForm.getListUserDetails().get(m).getPrice();
+			   			  }
+
+			   			  cartForm.setTotal_money(total);
+			   			  orderService.updateOrder(cartForm);
 		    		  }
 		    	  }
 				   
@@ -176,29 +254,42 @@ public class CartController {
 			   if(listOrder.size() == 0) {
 				   //tao moi order
 				   Branch branch = null;
-				   Date day = new Date();
-				   Time time = new Time(day.getTime());
-				   Order order = new Order(user,  branch, user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getCity(), user.getProvince(), 0.0, time, "Choose", "");
+				   java.sql.Date day = new java.sql.Date(new java.util.Date().getTime());
+				   //Time time = new Time(day.getTime());
+				   Order order = new Order(user,  branch, user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getCity(), user.getProvince(), 0.0, day, "Choose", "");
 				   orderService.addOrder(order);
 				// Lay order vua tao
 				   List<Order> list = orderService.getOrderByUsername(user);
 				   for(int i = 0; i < list.size(); i++) {
-					   if(list.get(i).getDate_time().getHours() == time.getHours()
-							   && list.get(i).getDate_time().getMinutes() == time.getMinutes()
-							   && list.get(i).getDate_time().getSeconds() == time.getSeconds()) {
+					   if(list.get(i).getStatus().equals("Choose")) {
 						   OrderDetail orderDetail = list.get(i).findLineById(food.getId());
 			   			   if(orderDetail == null) {
 			   				   orderDetail = new OrderDetail(list.get(i), food, food.getPrice(), 1);
 			   				   orderDetailService.addOrderDetail(orderDetail);
+			   				   list.get(i).getListUserDetails().add(orderDetail);
+				   				double total = 0;
+				   				for(int m = 0; m < list.get(i).getListUserDetails().size(); m++) {
+				   					total = total + list.get(i).getListUserDetails().get(m).getPrice();
+				   				}
+				   				System.out.println("tong tien tao moi: " + total);
+				   				list.get(i).setTotal_money(total);
+				   				orderService.updateOrder(list.get(i));
 			   			   }
 			   			   else {
+			   				   System.out.println("cap nhat");
 			   				   orderDetail.setQuantity(orderDetail.getQuantity() + 1);
 			   				   orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getFood_id().getPrice());
 			   				   orderDetailService.updateOrderDetail(orderDetail);
-			   			   }
+				   				double total = 0;
+				   				for(int m = 0; m < list.get(i).getListUserDetails().size(); m++) {
+				   					total = total + list.get(i).getListUserDetails().get(m).getPrice();
+				   				}
+				   				System.out.println("tong tien cap nhat: " + total);
+				   				list.get(i).setTotal_money(total);
+				   				orderService.updateOrder(list.get(i));
 			   			
+			   			   }
 					   }
-					   
 				   }
 				   
 			   }
@@ -221,11 +312,16 @@ public class CartController {
 			   			    }
 			   			    else {
 			   				   orderDetail.setQuantity(orderDetail.getQuantity() + 1);
-			   				   orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getFood_id().getPrice());
+			   				   orderDetail.setPrice(orderDetail.getQuantity() * food.getPrice());
+			   				   System.out.println("gia thuc an: " + food.getPrice());
 			   				   orderDetailService.updateOrderDetail(orderDetail);
-			   				   
-			   				orderService.calTotalCost(listOrder.get(i));
-			   				orderService.updateOrder(listOrder.get(i));
+				   				double total = 0;
+				   				for(int m = 0; m < listOrder.get(i).getListUserDetails().size(); m++) {
+				   					total = total + listOrder.get(i).getListUserDetails().get(m).getPrice();
+				   				}
+				   				System.out.println("tong tien cap nhat: " + total);
+				   				listOrder.get(i).setTotal_money(total);
+				   				orderService.updateOrder(listOrder.get(i));
 			   			    }
 			    			
 			    			break;
@@ -235,32 +331,48 @@ public class CartController {
 				    	Branch branch = null;
 						   
 						   //tao moi order
-						   Date day = new Date();
-						   Time time = new Time(day.getTime());
-						   Order order = new Order(user,  branch, user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getCity(), user.getProvince(), 0.0, time, "Choose", "");
+				    	//java.sql.Date day = new java.sql.Date(new java.util.Date().getTime());
+						   //Time time = new Time(day.getTime());
+				    	   Date day = new Date();
+						   Order order = new Order(user,  branch, user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getCity(), user.getProvince(), 0.0, day, "Choose", "");
 						   orderService.addOrder(order);
 						   
 						// Lay order vua tao
 						   List<Order> list = orderService.getOrderByUsername(user);
 						   for(int i = 0; i < list.size(); i++) {
 							   System.out.println("Time get: " + list.get(i).getDate_time());
-							   System.out.println("Time new: " + time);
-							   System.out.println("so sanh: " + list.get(i).getDate_time().equals(time));
-							   if(list.get(i).getDate_time().getHours() == time.getHours()
-									   && list.get(i).getDate_time().getMinutes() == time.getMinutes()
-									   && list.get(i).getDate_time().getSeconds() == time.getSeconds()) {
+							   System.out.println("Time new: " + day);
+							   System.out.println("so sanh: " + list.get(i).getDate_time().equals(day));
+							   if(list.get(i).getStatus().equals("Choose")) {
 								   OrderDetail orderDetail = list.get(i).findLineById(food.getId());
 								   System.out.println("order detail: " + orderDetail);
 					   			   if(orderDetail == null) {
 					   				   System.out.println("tao moi");
 					   				   orderDetail = new OrderDetail(list.get(i), food, food.getPrice(), 1);
 					   				   orderDetailService.addOrderDetail(orderDetail);
+					   				   list.get(i).getListUserDetails().add(orderDetail);
+					   				   //cap nhat tien order
+					   				   
+					   				double total = 0;
+					   				for(int m = 0; m < list.get(i).getListUserDetails().size(); m++) {
+					   					total = total + list.get(i).getListUserDetails().get(m).getPrice();
+					   				}
+					   				System.out.println("tong tien tao moi: " + total);
+					   				list.get(i).setTotal_money(total);
+					   				orderService.updateOrder(list.get(i));
 					   			   }
 					   			   else {
 					   				   System.out.println("cap nhat");
 					   				   orderDetail.setQuantity(orderDetail.getQuantity() + 1);
 					   				   orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getFood_id().getPrice());
 					   				   orderDetailService.updateOrderDetail(orderDetail);
+					   				double total = 0;
+					   				for(int m = 0; m < list.get(i).getListUserDetails().size(); m++) {
+					   					total = total + list.get(i).getListUserDetails().get(m).getPrice();
+					   				}
+					   				System.out.println("tong tien cap nhat: " + total);
+					   				list.get(i).setTotal_money(total);
+					   				orderService.updateOrder(list.get(i));
 					   			   }
 					   			
 							   }

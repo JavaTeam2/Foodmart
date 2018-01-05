@@ -47,21 +47,20 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.getOrders();
 	}
 
-	@Override
 	public List<Order> getOrderByUsername(User user) {
 		// TODO Auto-generated method stub
 		List<Order> listUserOrder = new ArrayList<Order>();
 		return user.getOrders();
 	}
 
-	@Override
-	public void calTotalCost(Order order) {
+	public Order calTotalCost(Order order) {
 		// TODO Auto-generated method stub
 		double total = 0;
 		for(int i = 0; i < order.getListUserDetails().size(); i++) {
 			total = total + order.getListUserDetails().get(i).getPrice();
 		}
 		order.setTotal_money(total);
+		return order;
 	}
 	
 	
