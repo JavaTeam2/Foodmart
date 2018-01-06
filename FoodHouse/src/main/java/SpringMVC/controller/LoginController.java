@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -70,6 +71,19 @@ public class LoginController {
 		      }
        return "login";
    }
+
+   @RequestMapping(value = "/start")
+   public String start(Model model, Authentication auth){
+        for (GrantedAuthority _auth: auth.getAuthorities()){
+            if (_auth.getAuthority().equals("ROLE_ADMIN"))
+                return "redirect:/admin";
+            else if (_auth.getAuthority().equals("ROLE_SELLER"))
+                return "redirect:/seller";
+            else
+                return "redirect:/gallery";
+        }
+       return "redirect:/gallery";
+   }
  
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(Model model) {
@@ -78,15 +92,16 @@ public class LoginController {
    }
  
    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-   public String userInfo(Model model, Principal principal) {
+   public String userInfo(Model model, Principal principal, Authentication authentication) {
  
        // After user login successfully.
        String userName = principal.getName();
-
        System.out.println("User Name: "+ userName);
  
        return "gallery";
    }
+
+
  
    @RequestMapping(value = "/403", method = RequestMethod.GET)
    public String accessDenied(Model model, Principal principal) {

@@ -1,7 +1,9 @@
 package SpringMVC.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,10 +40,10 @@ public class GalleryController {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String username = auth.getName();
 		 	List<Food> listFood = foodService.getFoods();
-		 	List<Food> listStarters = new ArrayList<Food>();
-		 	List<Food> listMainCourse = new ArrayList<Food>();
-		 	List<Food> listSalads = new ArrayList<Food>();
-		 	List<Food> listDesserts = new ArrayList<Food>();
+		 List<Food> listStarters = new ArrayList<Food>();
+		 List<Food> listMainCourse = new ArrayList<Food>();
+		 List<Food> listSalads = new ArrayList<Food>();
+		 List<Food> listDesserts = new ArrayList<Food>();
 		 	
 		 	/*listStarters = foodService.getStartersFood(listFood);
 		 	listMainCourse = foodService.getMainCourseFood(listFood);

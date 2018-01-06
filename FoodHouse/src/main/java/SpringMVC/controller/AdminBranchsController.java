@@ -1,7 +1,10 @@
 package SpringMVC.controller;
 
 import java.util.List;
+import java.util.Set;
 
+import SpringMVC.entity.Food;
+import SpringMVC.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,8 @@ import SpringMVC.service.BranchService;
 public class AdminBranchsController {
 	@Autowired
 	private BranchService branchService;
+	@Autowired
+	private FoodService foodService;
 	
 	@RequestMapping("admin/branchs")
 	public String foods(Model model) {
@@ -94,6 +99,10 @@ public class AdminBranchsController {
 		}
 
 		for (int i = 0; i < id.length; i++) {
+			List<Food> foods = foodService.getFoods();
+			for (Food foodItem: foods){
+				foodItem.getBranches().remove(branchService.getBranch(id[i]));
+			}
 			this.branchService.deleteBranch(id[i]);
 		}
 		return "redirect:/admin/branchs";
@@ -105,8 +114,13 @@ public class AdminBranchsController {
 		if (id <= 0) {
 			return "redirect:/admin/branchs";
 		}
-
-		this.branchService.deleteBranch(id);
+		Branch branch = branchService.getBranch(id);
+		branch.getFoods().clear();
+		for (Food foodItem: foodService.getFoods()){
+			foodItem.getBranches().remove(branch);
+			int a = 3;
+		}
+		branchService.deleteBranch(id);
 
 		return "redirect:/admin/branchs";
 	}

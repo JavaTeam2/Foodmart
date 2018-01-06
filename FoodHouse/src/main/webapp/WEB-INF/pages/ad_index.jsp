@@ -14,32 +14,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
 
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
 
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b06dff696a631b5ba3b6b9a69b6b6997a8ef6a39
 </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"

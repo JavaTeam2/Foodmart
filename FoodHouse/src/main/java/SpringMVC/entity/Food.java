@@ -1,6 +1,8 @@
 package SpringMVC.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -79,7 +81,8 @@ public class Food implements Serializable {
 		this.description = description;
 	}
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy ="foods")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy ="foods")
+	@Cascade(CascadeType.DELETE_ORPHAN)
 	public Set<Branch> getBranches() {
 		return branches;
 	}

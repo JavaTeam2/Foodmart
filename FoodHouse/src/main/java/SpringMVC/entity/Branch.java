@@ -1,6 +1,7 @@
 package SpringMVC.entity;
 
 import com.sun.org.apache.xpath.internal.operations.Or;
+import org.hibernate.annotations.Cascade;
 
 import java.sql.Time;
 import java.util.Date;
@@ -135,10 +136,9 @@ public class Branch {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "branches_foods",joinColumns = {
-			@JoinColumn(name = "branch_id", nullable = false, updatable = false) },
+			@JoinColumn(name = "branch_id") },
 			inverseJoinColumns = { @JoinColumn(name = "food_id",
 			nullable = false, updatable = false) })
-
 	public Set<Food> getFoods() {
 		return foods;
 	}

@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -13,7 +14,7 @@
                     <li class=""><a href="/FoodHouse/admin">FoodHouse Admin</a></li>
                 </ul>
                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="logout">Logout</a></li>
+                    <li><a href="<c:url value='/logout'/>">Logout</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
