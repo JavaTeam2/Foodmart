@@ -32,6 +32,8 @@ public class HomeController {
 	private OrderService orderService;
 	@Autowired
 	private OrderDetailService orderDetailService;
+	@Autowired
+	private FoodService foodService;
 	
 	@RequestMapping(value= {"/home", "/", ""})
 	public String home(Model model, HttpServletRequest request) {
@@ -42,8 +44,9 @@ public class HomeController {
 			System.out.println(listOrderDetails.get(i).getPrice());
 		}
 		//System.out.println(listFood.get(0).getCustomer_city());
+		List<Food> listFood = foodService.getFoods();
 		List<Food> listSpecial = new ArrayList<Food>();
-		/*listSpecial = foodService.getSpecialFood(listFood);*/
+		listSpecial = foodService.getSpecialFood(listFood);
 		
 		model.addAttribute("listSpecial", listSpecial);
 		
@@ -53,6 +56,7 @@ public class HomeController {
 		 	if(username.equals("anonymousUser")) {
 		    	  myCart = Utils.getOrderInSession(request);
 		    	  model.addAttribute("cartForm", myCart);
+		    	  model.addAttribute("count", myCart.getListUserDetails().size());
 		      }
 		      else {
 		    	  List<Order> listOrder = orderService.getOrderByUsername(userService.getUserByUsername(username));

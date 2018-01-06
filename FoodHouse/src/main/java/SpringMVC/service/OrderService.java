@@ -12,5 +12,5 @@ public interface OrderService {
 	public void deleteOrder(int id);
 	public List<Order> getOrders();
 	public List<Order> getOrderByUsername(User user);
-	public void calTotalCost(Order order);
+	public Order calTotalCost(Order order);
 }

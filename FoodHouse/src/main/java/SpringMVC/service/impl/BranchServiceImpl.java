@@ -84,12 +84,10 @@ public class BranchServiceImpl implements BranchService {
 		return branchDAO.getBranch(id);
 	}
 
-	@Override
 	public Branch getBranchHasFood(int id){
 		Branch branch = branchDAO.getBranchHasFoods(id);
 		return branch;
 	}
-	@Override
 	public void deleteBranch(int id) {
 		// TODO Auto-generated method stub
 		branchDAO.deleteBranch(id);

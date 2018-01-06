@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							 <ul class="nav navbar-nav link-effect-4">
-							<li><a href="home" data-hover="Home">Home</a> </li>
+							<li><a href="${pageContext.request.contextPath}/home" data-hover="Home">Home</a> </li>
 								<li><a href="about" data-hover="About">About </a> </li>
 								<li><a href="gallery"  data-hover="Gallery">Gallery</a></li>
 							  	<li><a href="our_branches" data-hover="OurBranches">Our Branches</a></li>
@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div><!-- /.navbar-collapse -->
 						</div>
 			
-					<sec:authorize access="hasRole('ROLE_CUSTOMER')">
+					
 					<div class="header-left shopping-item" style="margin-top: 10px;">
 						<!-- <ul>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
@@ -129,15 +129,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a> -->
 						
 					</div>
-			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+			
+			<%-- <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
 			<div class="header-left">
 				<ul>
 					<li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@example.com">@example.com</a></li>
 					<li><i class="fa fa-fax" aria-hidden="true"></i> +1234 567 892</li>
 				</ul>
 			</div>
-			</sec:authorize>	
+			</sec:authorize> --%>	
 				</div>
 			</div>
 			<div class="w3-agile-main-heading">
@@ -164,44 +164,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
+                        <c:forEach items="${listSpecial }" var="food">
+                        	<div class="thubmnail-recent">
+	                            <img src="${food.image }" class="recent-thumb" alt="">
+	                            <h2><a href="single-product.html">${food.name }</a></h2>
+	                            <div class="product-sidebar-price">
+	                                <ins>$${food.price }</ins> <del>$${food.price_promotion }</del>
+	                            </div>                             
+                        	</div>
+                        </c:forEach>
                     </div>
                     
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
                         <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
+                        	<c:forEach items="${listSpecial }" var="food">
+                        		<li><a href="#">${food.name }</a></li>
+                        	</c:forEach>
                         </ul>
                     </div>
                 </div>
@@ -224,10 +203,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <form:input type="hidden" path="id"/>
+									<form:input type="hidden" path="customer_id.id"/>
+									<form:input type="hidden" path="customer_province"/>
+									<form:input type="hidden" path="total_money"/>
+									<form:input type="hidden" path="date_time"/>
+									<form:input type="hidden" path="status"/>
                                     <c:forEach items="${cartForm.listUserDetails }" var = "cartLine" varStatus="i">
                                     	<tr class="cart_item">
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">X</a> 
+                                                <a title="Remove this item" class="remove" href="${pageContext.request.contextPath}/deleteFood?code=${cartLine.food_id.id}">X</a> 
                                             </td>
 
                                             <td class="product-thumbnail">
@@ -238,6 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <a href="single-product.html">${ cartLine.quantity} </a> 
                                             </td>
 											
+	
                                             <td class="product-price">
                                                 <span class="amount">$${cartLine.food_id.price }</span> 
                                             </td>
@@ -293,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="products">
                                     <li class="product">
                                         <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="images/1.jpg">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="images/3.jpg">
                                             <h3>Ship Your Idea</h3>
                                             <span class="price"><span class="amount">$20.00</span></span>
                                         </a>

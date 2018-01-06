@@ -38,7 +38,6 @@ public class FoodServiceImpl implements FoodService{
 		return listStartersFood;
 	}
 	
-	@Override
 	public List<Food> getMainCourseFood(List<Food> listFood) {
 		// TODO Auto-generated method stub
 		List<Food> listMainCourseFood = new ArrayList<Food>();
@@ -53,7 +52,6 @@ public class FoodServiceImpl implements FoodService{
 		}
 		return listMainCourseFood;
 	}
-	@Override
 	public List<Food> getSaladsFood(List<Food> listFood) {
 		// TODO Auto-generated method stub
 		List<Food> listSaladsFood = new ArrayList<Food>();
@@ -68,7 +66,6 @@ public class FoodServiceImpl implements FoodService{
 		}
 		return listSaladsFood;
 	}
-	@Override
 	public List<Food> getDessertsFood(List<Food> listFood) {
 		// TODO Auto-generated method stub
 		List<Food> listDessertsFood = new ArrayList<Food>();
@@ -84,7 +81,6 @@ public class FoodServiceImpl implements FoodService{
 		return listDessertsFood;
 	}
 	
-	@Override
 	public List<Food> getSpecialFood(List<Food> listFood) {
 		// TODO Auto-generated method stub
 		List<Food> listSpecialFood = new ArrayList<Food>();

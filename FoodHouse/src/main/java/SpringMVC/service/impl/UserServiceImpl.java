@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getListUser();
 	}
 
-	@Override
 	public User getUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		return userDAO.getUserByUsername(username);

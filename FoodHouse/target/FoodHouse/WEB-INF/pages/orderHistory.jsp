@@ -159,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="w3-container">
 		<table class="w3-table-all">
     <thead>
-      <tr class="w3-light-grey w3-hover-blue">
+      <tr class="w3-blue w3-hover-blue">
         <th>Customer Name</th>
         <th>Customer Phone</th>
         <th>Customer Email</th>

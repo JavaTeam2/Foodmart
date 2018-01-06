@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 			<div class="w3-agile-main-heading">
-				<h2>Gallery</h2>
+				<h2>Login</h2>
 			</div>
 		</div>
 		<!-- //agileinfo-dot -->
@@ -133,9 +133,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          </div>
     </c:if>
 	<form name='f' action="${pageContext.request.contextPath}/j_spring_security_check" method='POST'>
-	<div class="imgcontainer">
-		<img src="image/lohinavtar.png" alt="Avatar" class="avatar">
-	</div>
+	<!-- <div class="imgcontainer">
+		<img  width="128" height="128" src="images/student.png" alt="Avatar" class="avatar">
+	</div> -->
 	
 	<div class="container">
 		<label><b>Username</b></label>

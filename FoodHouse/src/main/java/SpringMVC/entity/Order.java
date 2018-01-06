@@ -223,6 +223,7 @@ public class Order implements Serializable{
                 this.listUserDetails.remove(line);
             } else {
                 line.setQuantity(quantity);
+                line.setPrice(line.getFood_id().getPrice() * line.getQuantity());
             }
         }
     }
