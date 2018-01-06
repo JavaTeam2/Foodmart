@@ -43,11 +43,11 @@ public class GalleryController {
 		 	List<Food> listSalads = new ArrayList<Food>();
 		 	List<Food> listDesserts = new ArrayList<Food>();
 		 	
-		 	/*listStarters = foodService.getStartersFood(listFood);
+		 	listStarters = foodService.getStartersFood(listFood);
 		 	listMainCourse = foodService.getMainCourseFood(listFood);
 		 	listSalads = foodService.getSaladsFood(listFood);
 		 	listDesserts = foodService.getDessertsFood(listFood);
-		 	*/
+		 	
 		 	
 		 	model.addAttribute("listFood", listFood);
 		 	

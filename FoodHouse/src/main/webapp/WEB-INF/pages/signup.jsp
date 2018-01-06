@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- //banner -->
 	<!-- signup -->
-	<form action="/action_page.php" style="border:1px solid #ccc">
+	<form action="${pageContext.request.contextPath}/signup" style="border:1px solid #ccc">
   <div class="container">
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>

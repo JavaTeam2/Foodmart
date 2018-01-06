@@ -88,14 +88,12 @@ public class FoodServiceImpl implements FoodService{
 		// TODO Auto-generated method stub
 		List<Food> listSpecialFood = new ArrayList<Food>();
 		for(int i = 0; i < listFood.size(); i++) {
-			Set<Categories> listCate = listFood.get(i).getCategories();
-			for (Iterator<Categories> iterator = listCate.iterator(); iterator.hasNext();){
-				Categories cate = (Categories) iterator.next(); 
-				if(cate.getName().equals(SPECIAL_FOOD)) {
-					listSpecialFood.add(listFood.get(i));
-				}
-	        }
+			if(listFood.get(i).getDescription().equals("Special")) {
+				listSpecialFood.add(listFood.get(i));
+			}
+			
 		}
+		
 		return listSpecialFood;
 	}
 	
